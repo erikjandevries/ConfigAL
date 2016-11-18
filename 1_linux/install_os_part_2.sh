@@ -17,11 +17,13 @@ else
 fi
 
 #### Set root password ####
+echo_warn "Setting Root password"
 passwd
 #### Create a user account ####
 if [[ "x$NEW_USERNAME" == "x" ]]; then
   echo_warn "Username not set"
 else
+  echo_warn "Setting password for user $NEW_USERNAME"
   useradd -m -g users -G wheel,storage,power -s /bin/bash $NEW_USERNAME
   passwd $NEW_USERNAME
 fi

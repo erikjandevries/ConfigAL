@@ -13,6 +13,9 @@ pacstrap /mnt base base-devel
 echo_info "Generating /etc/fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
 
+mkdir $DATA_PARTITION_MOUNT_FOLDER
+ensure_conf "$DATA_PARTITION $DATA_PARTITION_MOUNT_FOLDER ext4 errors=remount-ro 0 0" /mnt/etc/fstab -sudo
+
 cp $CONFIGAL_REPO/1_linux/install_os_part_2.sh /mnt/root/
 tee /mnt/root/install_os_part_2_settings.sh << EOF > /dev/null
 TIME_ZONE=$TIME_ZONE
