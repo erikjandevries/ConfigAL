@@ -19,11 +19,11 @@ fi
 #### Set root password ####
 passwd
 #### Create a user account ####
-if [[ "x$USERNAME" == "x" ]]; then
+if [[ "x$NEW_USERNAME" == "x" ]]; then
   echo_warn "Username not set"
 else
-  useradd -m -g users -G wheel,storage,power -s /bin/bash $USERNAME
-  passwd $USERNAME
+  useradd -m -g users -G wheel,storage,power -s /bin/bash $NEW_USERNAME
+  passwd $NEW_USERNAME
 fi
 
 #### Install boot loader ####

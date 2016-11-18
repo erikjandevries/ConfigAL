@@ -17,7 +17,7 @@ cp $CONFIGAL_REPO/1_linux/install_os_part_2.sh /mnt/root/
 tee /mnt/root/install_os_part_2_settings.sh << EOF > /dev/null
 TIME_ZONE=$TIME_ZONE
 HOSTNAME=$HOSTNAME
-USERNAME=$USERNAME
+NEW_USERNAME=$NEW_USERNAME
 OS_DISK=$OS_DISK
 EFI_BOOT=$EFI_BOOT
 EOF

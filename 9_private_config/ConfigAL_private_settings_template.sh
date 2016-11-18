@@ -1,3 +1,3 @@
 # Install OS
 HOSTNAME=archlinux.local
-USERNAME=johndoe
+NEW_USERNAME=johndoe
