@@ -1,5 +1,6 @@
 #### Load settings for part 2 ####
 source /root/install_os_part_2_settings.sh
+source /root/ConfigAL_functions.sh
 
 #### Time Zone ####
 ln -s /usr/share/zoneinfo/$TIME_ZONE /etc/localtime
