@@ -1,5 +1,3 @@
-CONFIGAL_REPO=
-
 #### 1 Linux ####
 
 # Prepare Data disk
