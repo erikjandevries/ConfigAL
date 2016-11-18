@@ -21,8 +21,8 @@ if [[ "$PREPARE_OS_DISK" == "true" ]]; then
 
     if [[ "$OS_PARTITION_FS" == "btrfs" ]]; then
       parted $OS_DISK mkpart primary btrfs 513MiB 100%
-      mkfs.btrfs -d single -m single $OS_PARTITION
-    elif [[ "$OS_PARTITION_FS" == "btrfs" ]]; then
+      mkfs.btrfs -f -d single -m single $OS_PARTITION
+    elif [[ "$OS_PARTITION_FS" == "ext4" ]]; then
       parted $OS_DISK mkpart primary ext4 513MiB 100%
       mkfs.ext4 $OS_PARTITION
     fi
