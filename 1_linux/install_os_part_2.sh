@@ -28,7 +28,7 @@ fi
 
 #### Install boot loader ####
 
-if [ $EFI_BOOT ]; then
+if [ "$EFI_BOOT" == "true" ]; then
   echo_warn "EFI boot is currently not supported!"
 
 # bootctl --path=/boot install

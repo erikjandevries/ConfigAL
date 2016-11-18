@@ -3,7 +3,7 @@ CONFIGAL_REPO=
 #### 1 Linux ####
 
 # Prepare Data disk
-PREPARE_DATA_DISK=true
+PREPARE_DATA_DISK=false
 DATA_DISK=/dev/sdb
 DATA_PARTITION=${DATA_DISK}1
 DATA_PARTITION_FS=ext4  # ext4

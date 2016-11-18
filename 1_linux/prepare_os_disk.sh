@@ -2,10 +2,10 @@
 # https://wiki.archlinux.org/index.php/installation_guide
 # https://medium.com/@terusus/arch-linux-installation-copy-paste-guide-cdab7851e6d2
 
-if [ $PREPARE_OS_DISK ]; then
+if [ "$PREPARE_OS_DISK" == "true" ]; then
   echo_section "Preparing OS disk"
 
-  if [ $EFI_BOOT ]; then
+  if [ "$EFI_BOOT" == "true" ]; then
     echo_warn "EFI boot is currently not supported!"
   else
     echo_info "Preparing disk for BIOS boot"
