@@ -10,7 +10,7 @@ hwclock --systohc
 
 #### Hostname ####
 touch /etc/hostname
-if [ "x$HOSTNAME" == "x" ]; then
+if [[ "x$HOSTNAME" == "x" ]]; then
   echo_warn "Hostname not set"
 else
   echo "$HOSTNAME" >> /etc/hostname
@@ -19,7 +19,7 @@ fi
 #### Set root password ####
 passwd
 #### Create a user account ####
-if [ "x$USERNAME" == "x" ]; then
+if [[ "x$USERNAME" == "x" ]]; then
   echo_warn "Username not set"
 else
   useradd -m -g users -G wheel,storage,power -s /bin/bash $USERNAME
@@ -28,7 +28,7 @@ fi
 
 #### Install boot loader ####
 
-if [ "$EFI_BOOT" == "true" ]; then
+if [[ "$EFI_BOOT" == "true" ]]; then
   echo_warn "EFI boot is currently not supported!"
 
 # bootctl --path=/boot install

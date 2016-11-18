@@ -9,7 +9,7 @@ if [ "$PREPARE_DATA_DISK" == "true" ]; then
 
   DATA_PARTITION=${DATA_DISK}1
 
-  if [ "$DATA_PARTITION_FS" == "ext4" ]; then
+  if [[ "$DATA_PARTITION_FS" == "ext4" ]]; then
     parted $DATA_DISK mkpart primary ext4 1MiB 100%
     mkfs.ext4 $DATA_PARTITION
   else

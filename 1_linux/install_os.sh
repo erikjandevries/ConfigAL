@@ -14,7 +14,7 @@ echo_info "Generating /etc/fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp $CONFIGAL_REPO/1_linux/install_os_part_2.sh /mnt/root/
-tee /mnt/root/install_os_part_2_settings << EOF > /dev/null
+tee /mnt/root/install_os_part_2_settings.sh << EOF > /dev/null
 TIME_ZONE=$TIME_ZONE
 HOSTNAME=$HOSTNAME
 USERNAME=$USERNAME
@@ -22,6 +22,7 @@ OS_DISK=$OS_DISK
 EFI_BOOT=$EFI_BOOT
 EOF
 chmod 700 /mnt/root/install_os_part_2.sh
+chmod 700 /mnt/root/install_os_part_2_settings.sh
 
 arch-chroot /mnt /root/install_os_part_2.sh
 
