@@ -53,7 +53,7 @@ if [[ "$EFI_BOOT" == "true" ]]; then
 else
   echo_info "Installing GRUB boot loader"
 
-  pacman -S grub
+  pacman -S --noconfirm grub
   grub-install --target=i386-pc --recheck $OS_DISK
   grub-mkconfig -o /boot/grub/grub.cfg
 fi
