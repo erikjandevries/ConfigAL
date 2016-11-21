@@ -21,7 +21,7 @@ if [[ "$VM_HOST" == "VirtualBox" ]]; then
 fi
 
 #### Time Zone ####
-ln -s /usr/share/zoneinfo/$TIME_ZONE /etc/localtime
+ln -s /usr/share/zoneinfo/$OS_TIME_ZONE /etc/localtime
 hwclock --systohc
 
 #### Locale ####
@@ -30,8 +30,8 @@ replace_conf "#en_US.UTF-8 UTF-8" "en_US.UTF-8 UTF-8" /etc/locale.gen
 replace_conf "#nl_NL.UTF-8 UTF-8" "nl_NL.UTF-8 UTF-8" /etc/locale.gen
 replace_conf "#nl_NL@euro ISO-8859-15" "nl_NL@euro ISO-8859-15" /etc/locale.gen
 locale-gen
-echo LANG=nl_NL@euro > /etc/locale.conf
-export LANG=nl_NL@euro
+echo LANG=$OS_LOCALE > /etc/locale.conf
+export LANG=$OS_LOCALE
 
 #### Set root password ####
 echo_warn "Setting Root password"

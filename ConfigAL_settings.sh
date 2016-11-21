@@ -22,6 +22,8 @@ MIRRORLIST_COUNTRY=NL
 DEVEL_PACKAGES=true
 
 # Install OS - part 2
-TIME_ZONE=Europe/Amsterdam
+OS_TIME_ZONE=Europe/Amsterdam
+OS_LOCALE=en_GB.UTF-8
 
+# Private settings
 source $CONFIGAL_REPO/9_private_config/ConfigAL_private_settings.sh
