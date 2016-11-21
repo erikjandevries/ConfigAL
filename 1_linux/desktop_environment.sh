@@ -3,4 +3,4 @@ pacman -S --noconfirm mesa
 pacman -S --noconfirm plasma
 pacman -S --noconfirm sddm
 systemctl enable sddm
-systemctl start sddm
+# systemctl start sddm
