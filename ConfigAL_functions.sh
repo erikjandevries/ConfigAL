@@ -63,9 +63,9 @@ echo_section () {
   tmp="                                                                                                              "
   length=${#1}
   line=${tmp:1:$length}
-  echo -e "${color_yellow}${bg_black}${font_bold}  $line  ${font_default}"
-  echo -e "${color_yellow}${bg_black}${font_bold}  $1  ${font_default}"
-  echo -e "${color_yellow}${bg_black}${font_bold}  $line  ${font_default}"
+  echo -e "${color_orange}${bg_black}${font_bold}  $line  ${font_default}"
+  echo -e "${color_orange}${bg_black}${font_bold}  $1  ${font_default}"
+  echo -e "${color_orange}${bg_black}${font_bold}  $line  ${font_default}"
 }
 
 echo_subsection () {
