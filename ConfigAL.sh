@@ -1,7 +1,8 @@
-CONFIGAL_REPO=$(pwd)
-
 source ConfigAL_settings.sh
 source ConfigAL_functions.sh
 
-source 1_linux/prepare_os_disk.sh
-source 1_linux/install_os.sh
+source 1_linux/kde_plasma.sh
+source 1_linux/kde_applications.sh
+source 1_linux/firefox.sh
+
+source 2_www/openssh.sh

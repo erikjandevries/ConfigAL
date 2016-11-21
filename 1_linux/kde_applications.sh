@@ -33,7 +33,7 @@ pacman -S --noconfirm kate                               # Advanced Text Editor
 # pacman -S --noconfirm kbruch                             # Exercise Fractions
 pacman -S --noconfirm kcalc                              # Scientific Calculator
 pacman -S --noconfirm kcharselect                        # Character Selector
-# pacman -S --noconfirm kcolorchooser                      # Color Chooser
+pacman -S --noconfirm kcolorchooser                      # Color Chooser
 pacman -S --noconfirm kcron                              # Configure and schedule tasks
 # pacman -S --noconfirm kde-dev-scripts                    # Scripts and setting files useful during development of KDE software
 # pacman -S --noconfirm kdeaccessibility-jovie             # A text to speech application
@@ -135,7 +135,7 @@ pacman -S --noconfirm konsole                            # Terminal
 # pacman -S --noconfirm kturtle                            # Educational Programming Environment
 # pacman -S --noconfirm kwalletmanager                     # Wallet management tool
 # pacman -S --noconfirm kwordquiz                          # Flash Card Trainer
-pacman -S --noconfirm kwrite                             # Text Editor
+# pacman -S --noconfirm kwrite                             # Text Editor
 # pacman -S --noconfirm lokalize                           # Computer-Aided Translation System
 # pacman -S --noconfirm marble                             # Desktop Globe
 # pacman -S --noconfirm minuet                             # A KDE Software for Music Education

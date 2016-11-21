@@ -2,6 +2,14 @@
 source /root/install_os_part_2_settings.sh
 source /root/ConfigAL_functions.sh
 
+#### Hostname ####
+touch /etc/hostname
+if [[ "x$HOSTNAME" == "x" ]]; then
+  echo_warn "Hostname not set"
+else
+  echo "$HOSTNAME" > /etc/hostname
+fi
+
 #### Install Virtual Machine guest additions
 # See http://unix.stackexchange.com/questions/89714/easy-way-to-determine-virtualization-technology
 pacman -S --noconfirm dmidecode
@@ -17,15 +25,13 @@ ln -s /usr/share/zoneinfo/$TIME_ZONE /etc/localtime
 hwclock --systohc
 
 #### Locale ####
-
-
-#### Hostname ####
-touch /etc/hostname
-if [[ "x$HOSTNAME" == "x" ]]; then
-  echo_warn "Hostname not set"
-else
-  echo "$HOSTNAME" >> /etc/hostname
-fi
+replace_conf "#en_GB.UTF-8 UTF-8" "en_GB.UTF-8 UTF-8" /etc/locale.gen
+replace_conf "#en_US.UTF-8 UTF-8" "en_US.UTF-8 UTF-8" /etc/locale.gen
+replace_conf "#nl_NL.UTF-8 UTF-8" "nl_NL.UTF-8 UTF-8" /etc/locale.gen
+replace_conf "#nl_NL@euro ISO-8859-15" "nl_NL@euro ISO-8859-15" /etc/locale.gen
+locale-gen
+echo LANG=nl_NL@euro > /etc/locale.conf
+export LANG=nl_NL@euro
 
 #### Set root password ####
 echo_warn "Setting Root password"
