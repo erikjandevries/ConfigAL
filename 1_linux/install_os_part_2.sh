@@ -2,6 +2,13 @@
 source /root/install_os_part_2_settings.sh
 source /root/ConfigAL_functions.sh
 
+#### Install Virtual Machine guest additions
+VM_HOST=$(dmidecode -s system-product-name)
+if [[ "$VM_HOST" == "VirtualBox" ]]; then
+  pacman -S --noconfirm virtualbox-guest-utils
+  systemctl enable vboxservice
+fi
+
 #### Time Zone ####
 ln -s /usr/share/zoneinfo/$TIME_ZONE /etc/localtime
 hwclock --systohc
