@@ -88,7 +88,7 @@ echo_warn () {
 echo_info () {
   # Requires
   # $1: warning message
-  echo -e "${color_light_blue}$1${font_default}"
+  echo -e "${color_cyan}$1${font_default}"
 }
 
 ensure_dir () {

@@ -9,7 +9,7 @@ fi
 if [[ "x$GIT_USER_EMAIL" == "x" ]]; then
   echo_warn "Git user email not set"
 else
-  echo_info "Setting Git global user.name: $GIT_USER_EMAIL"
+  echo_info "Setting Git global user.email: $GIT_USER_EMAIL"
   git config --global user.email "$GIT_USER_EMAIL"
 fi
 
