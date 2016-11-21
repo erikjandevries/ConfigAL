@@ -8,7 +8,11 @@ echo_info "Using mirrorlist for: $MIRRORLIST_COUNTRY"
 cp $CONFIGAL_REPO/1_linux/config_files/mirrorlist_$MIRRORLIST_COUNTRY /etc/pacman.d/mirrorlist
 
 echo_info "Installing Arch Linux"
-pacstrap /mnt base base-devel
+if [[ "$DEVEL_PACKAGES" == "true" ]]; then
+  pacstrap /mnt base base-devel
+else
+  pacstrap /mnt base
+fi
 
 echo_info "Generating /etc/fstab"
 genfstab -U /mnt >> /mnt/etc/fstab

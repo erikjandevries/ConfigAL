@@ -1,3 +1,5 @@
+CONFIGAL_REPO=$(pwd)
+
 #### 1 Linux ####
 
 # Prepare Data disk
@@ -17,6 +19,9 @@ OS_PARTITION_FS=btrfs  # ext4, btrfs
 
 # Install OS
 MIRRORLIST_COUNTRY=NL
+DEVEL_PACKAGES=true
+
+# Install OS - part 2
 TIME_ZONE=Europe/Amsterdam
 
 source $CONFIGAL_REPO/9_private_config/ConfigAL_private_settings.sh

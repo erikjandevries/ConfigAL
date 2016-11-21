@@ -4,6 +4,7 @@ source /root/ConfigAL_functions.sh
 
 #### Install Virtual Machine guest additions
 # See http://unix.stackexchange.com/questions/89714/easy-way-to-determine-virtualization-technology
+pacman -S --noconfirm dmidecode
 VM_HOST=$(dmidecode -s system-product-name)
 if [[ "$VM_HOST" == "VirtualBox" ]]; then
   pacman -S --noconfirm virtualbox-guest-utils
