@@ -7,10 +7,11 @@ mount $BOOT_PARTITION /mnt/boot
 echo_info "Using mirrorlist for: $MIRRORLIST_COUNTRY"
 cp $CONFIGAL_REPO/1_linux/install_os/config_files/mirrorlist_$MIRRORLIST_COUNTRY /etc/pacman.d/mirrorlist
 
-echo_info "Installing Arch Linux"
 if [[ "$DEVEL_PACKAGES" == "true" ]]; then
+  echo_info "Installing Arch Linux with development packages"
   pacstrap /mnt base base-devel
 else
+  echo_info "Installing Arch Linux"
   pacstrap /mnt base
 fi
 
