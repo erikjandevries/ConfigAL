@@ -27,3 +27,12 @@ OS_LOCALE=en_GB.UTF-8
 
 # Private settings
 source $CONFIGAL_REPO/9_private_config/ConfigAL_private_settings.sh
+
+
+# Passwords
+prompt_passwd "Arch Linux" "root"
+OS_ROOT_PASSWD=$PROMPT_PASSWD
+prompt_passwd "Arch Linux" $NEW_USERNAME
+OS_NEW_USERNAME_PASSWD=$PROMPT_PASSWD
+
+PROMPT_PASSWD=

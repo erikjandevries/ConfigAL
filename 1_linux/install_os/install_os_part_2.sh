@@ -2,7 +2,22 @@
 source /root/install_os_part_2_settings.sh
 source /root/ConfigAL_functions.sh
 
-#### Hostname ####
+
+
+echo_subsection "Checking for Virtual Machine"
+# See http://unix.stackexchange.com/questions/89714/easy-way-to-determine-virtualization-technology
+pacman -S --noconfirm dmidecode
+# VM_HOST=$(dmidecode -s system-manufacturer)
+VM_HOST=$(dmidecode -s system-product-name)
+if [[ "$VM_HOST" == "VirtualBox" ]]; then
+  echo_info "VirtualBox found... installing guest additions"
+  pacman -S --noconfirm virtualbox-guest-utils
+  systemctl enable vboxservice
+fi
+
+
+
+echo_subsection "Hostname"
 touch /etc/hostname
 if [[ "x$HOSTNAME" == "x" ]]; then
   echo_warn "Hostname not set"
@@ -10,21 +25,15 @@ else
   echo "$HOSTNAME" > /etc/hostname
 fi
 
-#### Install Virtual Machine guest additions
-# See http://unix.stackexchange.com/questions/89714/easy-way-to-determine-virtualization-technology
-pacman -S --noconfirm dmidecode
-# VM_HOST=$(dmidecode -s system-manufacturer)
-VM_HOST=$(dmidecode -s system-product-name)
-if [[ "$VM_HOST" == "VirtualBox" ]]; then
-  pacman -S --noconfirm virtualbox-guest-utils
-  systemctl enable vboxservice
-fi
 
-#### Time Zone ####
+
+echo_subsection "Time Zone"
 ln -s /usr/share/zoneinfo/$OS_TIME_ZONE /etc/localtime
 hwclock --systohc
 
-#### Locale ####
+
+
+echo_subsection "Locale"
 replace_conf "#en_GB.UTF-8 UTF-8" "en_GB.UTF-8 UTF-8" /etc/locale.gen
 replace_conf "#en_US.UTF-8 UTF-8" "en_US.UTF-8 UTF-8" /etc/locale.gen
 replace_conf "#nl_NL.UTF-8 UTF-8" "nl_NL.UTF-8 UTF-8" /etc/locale.gen
@@ -33,20 +42,38 @@ locale-gen
 echo LANG=$OS_LOCALE > /etc/locale.conf
 export LANG=$OS_LOCALE
 
-#### Set root password ####
-echo_warn "Setting Root password"
-passwd
+
+
+echo_subsection "Installing packages"
+pacman -Syy
+echo_info "Installing bash-completion"
+pacman -S --noconfirm bash-completion
+
+echo_info "Installing sudo"
+pacman -S --noconfirm sudo
+replace_conf "# %sudo ALL=(ALL) ALL" "%sudo ALL=(ALL) ALL" /etc/sudoers
+
+
+echo_subsection "Configuring users"
+echo_info "Setting root password"
+echo "root:$OS_ROOT_PASSWD" | chpasswd
+
 #### Create a user account ####
-if [[ "x$NEW_USERNAME" == "x" ]]; then
-  echo_warn "Username not set"
+if [[ "x$OS_NEW_USERNAME" == "x" ]]; then
+  echo_warn "New username not set"
 else
-  echo_warn "Setting password for user $NEW_USERNAME"
-  useradd -m -g users -G wheel,storage,power -s /bin/bash $NEW_USERNAME
-  passwd $NEW_USERNAME
+  if [[ "$OS_NEW_USERNAME_SUDO" == "true" ]]; then
+    useradd -m -g users -G wheel,storage,power,sudo -s /bin/bash $OS_NEW_USERNAME
+  else
+    useradd -m -g users -G wheel,storage,power -s /bin/bash $OS_NEW_USERNAME
+  fi
+  echo_info "Setting password for user $OS_NEW_USERNAME"
+  echo "$OS_NEW_USERNAME:$OS_NEW_USERNAME_PASSWD" | chpasswd
 fi
 
-#### Install boot loader ####
 
+
+echo_subsection "Installing boot loader"
 if [[ "$EFI_BOOT" == "true" ]]; then
   echo_warn "EFI boot is currently not supported!"
 
@@ -74,10 +101,12 @@ else
   grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
-#### Enable internet ####
+
+
+echo_subsection "Enabling network connection"
 NIC_NAME=$(ip link | grep -m 1 "BROADCAST" | awk -F': ' '{print $2}')
 systemctl enable dhcpcd@${NIC_NAME}.service
-systemctl enable NetworkManager
+# systemctl enable NetworkManager
 
 #### Exit ####
 exit

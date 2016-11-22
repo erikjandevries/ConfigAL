@@ -91,6 +91,28 @@ echo_info () {
   echo -e "${color_cyan}$1${font_default}"
 }
 
+prompt_passwd () {
+  # Requires
+  # $1: system name
+  # $2: user name
+
+  read -s -p "Enter $1 password for user $2:" PROMPT_PASSWD
+  echo
+  read -s -p "Please enter again:" PROMPT_PASSWD2
+  echo
+
+  while [ "$PROMPT_PASSWD" != "$PROMPT_PASSWD2" ]; do
+    echo "Passwords don't match!"
+    echo ""
+    read -s -p "Enter $1 password for user $2:" PROMPT_PASSWD
+    echo
+    read -s -p "Please enter again:" PROMPT_PASSWD2
+    echo
+  done
+
+  PROMPT_PASSWD2=
+}
+
 ensure_dir () {
   # Requires:
   # $1: directory path
