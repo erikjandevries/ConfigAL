@@ -96,17 +96,17 @@ prompt_passwd () {
   # $1: system name
   # $2: user name
 
-  read -s -p "Enter $1 password for user $2:" PROMPT_PASSWD
+  read -s "PROMPT_PASSWD2?Enter $1 password for user $2:"
   echo
-  read -s -p "Please enter again:" PROMPT_PASSWD2
+  read -s "PROMPT_PASSWD2?Please enter again:"
   echo
 
   while [ "$PROMPT_PASSWD" != "$PROMPT_PASSWD2" ]; do
     echo "Passwords don't match!"
     echo ""
-    read -s -p "Enter $1 password for user $2:" PROMPT_PASSWD
+    read -s "PROMPT_PASSWD?Enter $1 password for user $2:"
     echo
-    read -s -p "Please enter again:" PROMPT_PASSWD2
+    read -s "PROMPT_PASSWD2?Please enter again:"
     echo
   done
 

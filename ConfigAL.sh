@@ -1,5 +1,5 @@
-source ConfigAL_settings.sh
 source ConfigAL_functions.sh
+source ConfigAL_settings.sh
 
 source 1_linux/cinnamon.sh
 # source 1_linux/kde_plasma.sh

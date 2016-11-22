@@ -1,0 +1,5 @@
+# Install OS
+OS_HOSTNAME=archlinux.local
+OS_NEW_USERNAME=johndoe
+OS_NEW_USERNAME_SUDO=true
+DATA_PARTITION_MOUNT_FOLDER=/mnt/datadisk
