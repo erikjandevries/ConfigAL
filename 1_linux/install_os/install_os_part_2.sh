@@ -55,8 +55,12 @@ replace_conf "# %sudo ALL=(ALL) ALL" "%sudo ALL=(ALL) ALL" /etc/sudoers
 
 
 echo_subsection "Configuring users"
-echo_info "Setting root password"
-echo "root:$OS_ROOT_PASSWD" | chpasswd
+if [[ "x$OS_ROOT_PASSWD" == "x" ]]; then
+  echo_warn "Root password not set"
+else
+  echo_info "Setting root password"
+  echo "root:$OS_ROOT_PASSWD" | chpasswd
+fi
 
 #### Create a user account ####
 if [[ "x$OS_NEW_USERNAME" == "x" ]]; then
@@ -67,8 +71,12 @@ else
   else
     useradd -m -g users -G wheel,storage,power -s /bin/bash $OS_NEW_USERNAME
   fi
-  echo_info "Setting password for user $OS_NEW_USERNAME"
-  echo "$OS_NEW_USERNAME:$OS_NEW_USERNAME_PASSWD" | chpasswd
+  if [[ "x$OS_NEW_USERNAME_PASSWD" == "x" ]]; then
+    echo_warn "Password for user $OS_NEW_USERNAME not set"
+  else
+    echo_info "Setting password for user $OS_NEW_USERNAME"
+    echo "$OS_NEW_USERNAME:$OS_NEW_USERNAME_PASSWD" | chpasswd
+  fi
 fi
 
 
