@@ -51,7 +51,8 @@ pacman -S --noconfirm bash-completion
 
 echo_info "Installing sudo"
 pacman -S --noconfirm sudo
-replace_conf "# %sudo ALL=(ALL) ALL" "%sudo ALL=(ALL) ALL" /etc/sudoers
+groupadd sudo
+replace_conf "# %sudo\tALL=(ALL) ALL" "%sudo\tALL=(ALL) ALL" /etc/sudoers
 
 
 echo_subsection "Configuring users"
