@@ -1,4 +1,4 @@
-echo_section "Installing Firefox web browser"
+echo_section "Installing OpenSSH"
 
 pacman -S --noconfirm openssh
 systemctl enable sshd.socket
