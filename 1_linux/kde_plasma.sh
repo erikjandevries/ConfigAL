@@ -1,6 +1,3 @@
-pacman -S --noconfirm xorg-server xorg-xinit xorg-server-utils
-pacman -S --noconfirm mesa
+echo_section "Installing KDE Plasma desktop environment"
+
 pacman -S --noconfirm plasma
-pacman -S --noconfirm sddm
-systemctl enable sddm
-# systemctl start sddm

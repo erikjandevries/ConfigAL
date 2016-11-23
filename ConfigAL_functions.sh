@@ -240,31 +240,30 @@ replace_conf () {
   fi
 }
 
-# ensure_pkg () {
-#   # Requires
-#   # $@: packages to install
-#
-#   pkgmissing=
-#
-#   for i in "$@"
-#   do
-#     if [ $(dpkg-query -W -f='${Status}' $i 2>/dev/null | grep -c "ok installed") -eq 0 ];
-#     then
-#       if [ "x$pkgmissing" != "x" ]; then
-#         pkgmissing="$pkgmissing $i"
-#       else
-#         pkgmissing="$i"
-#       fi
-#     else
-#       echo_info "$i is already installed"
-#     fi
-#   done
-#
-#   if [ "x$pkgmissing" != "x" ]; then
-#     echo_info "Installing $pkgmissing"
-#     sudo apt-get install -y $pkgmissing
-#   fi
-# }
+ensure_pkg () {
+  # Requires
+  # $@: packages to install
+
+  pkgmissing=
+
+  for i in "$@"
+  do
+    if [[ "x$(pacman -Qs $i)" == "x" ]]; then
+      if [[ "x$pkgmissing" != "x" ]]; then
+        pkgmissing="$pkgmissing $i"
+      else
+        pkgmissing="$i"
+      fi
+    else
+      echo_info "$i is already installed"
+    fi
+  done
+
+  if [[ "x$pkgmissing" != "x" ]]; then
+    echo_info "Installing $pkgmissing"
+    sudo pacman -S --noconfirm $pkgmissing
+  fi
+}
 
 
 git_pull () {

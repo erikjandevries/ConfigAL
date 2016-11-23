@@ -11,6 +11,7 @@ pacman -S --noconfirm dmidecode
 VM_HOST=$(dmidecode -s system-product-name)
 if [[ "$VM_HOST" == "VirtualBox" ]]; then
   echo_info "VirtualBox found... installing guest additions"
+  pacman -S --noconfirm virtualbox-guest-modules-arch
   pacman -S --noconfirm virtualbox-guest-utils
   systemctl enable vboxservice
 fi
