@@ -309,7 +309,7 @@ ensure_pkg () {
 
   for i in "$@"
   do
-    if [[ "x$(pacman -Qs $i)" == "x" ]]; then
+    if [[ "x$(pacman -Qq $i)" != "x$i" ]]; then
       if [[ "x$pkgmissing" != "x" ]]; then
         pkgmissing="$pkgmissing $i"
       else
@@ -326,6 +326,9 @@ ensure_pkg () {
   fi
 }
 
+ensure_pkg () {
+  sudopw pacman -S --needed --noconfirm --color auto $@
+}
 
 git_pull () {
   while read data; do

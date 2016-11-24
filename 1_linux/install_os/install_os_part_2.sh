@@ -20,15 +20,17 @@ fi
 
 echo_subsection "Hostname"
 touch /etc/hostname
-if [[ "x$HOSTNAME" == "x" ]]; then
+if [[ "x$OS_HOSTNAME" == "x" ]]; then
   echo_warn "Hostname not set"
 else
-  echo "$HOSTNAME" > /etc/hostname
+  echo_info "$OS_HOSTNAME"
+  echo "$OS_HOSTNAME" > /etc/hostname
 fi
 
 
 
 echo_subsection "Time Zone"
+echo_info "$OS_TIME_ZONE"
 ln -s /usr/share/zoneinfo/$OS_TIME_ZONE /etc/localtime
 hwclock --systohc
 
@@ -40,6 +42,7 @@ replace_conf "#en_US.UTF-8 UTF-8" "en_US.UTF-8 UTF-8" /etc/locale.gen
 replace_conf "#nl_NL.UTF-8 UTF-8" "nl_NL.UTF-8 UTF-8" /etc/locale.gen
 replace_conf "#nl_NL@euro ISO-8859-15" "nl_NL@euro ISO-8859-15" /etc/locale.gen
 locale-gen
+echo_info "$OS_LOCALE"
 echo LANG=$OS_LOCALE > /etc/locale.conf
 export LANG=$OS_LOCALE
 
