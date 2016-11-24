@@ -1,4 +1,6 @@
-pacman -S --noconfirm git
+echo_section "Installing Git"
+
+install_pkg git
 
 if [[ "x$GIT_USER_NAME" == "x" ]]; then
   echo_warn "Git user name not set"

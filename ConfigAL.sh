@@ -15,3 +15,5 @@ source 1_linux/git.sh
 
 source 2_www/firefox.sh
 source 2_www/openssh.sh
+
+source 6_machine_learning/atom.sh

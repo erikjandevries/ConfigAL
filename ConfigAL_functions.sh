@@ -240,6 +240,13 @@ replace_conf () {
   fi
 }
 
+install_pkg () {
+  # Requires
+  # $@: packages to install
+
+  sudo pacman -S --noconfirm --color auto $@
+}
+
 ensure_pkg () {
   # Requires
   # $@: packages to install
@@ -261,7 +268,7 @@ ensure_pkg () {
 
   if [[ "x$pkgmissing" != "x" ]]; then
     echo_info "Installing $pkgmissing"
-    sudo pacman -S --noconfirm $pkgmissing
+    install_pkg $pkgmissing
   fi
 }
 

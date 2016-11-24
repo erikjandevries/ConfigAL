@@ -163,4 +163,6 @@ KDE_APPS="$KDE_APPS konsole"                            # Terminal
 # KDE_APPS="$KDE_APPS telepathy-kde-text-ui"              # Telepathy handler for Text Chats
 # KDE_APPS="$KDE_APPS umbrello"                           # UML modeller
 
-pacman -S --noconfirm $KDE_APPS
+echo_section "Installing KDE applications"
+echo_info "$KDE_APPS"
+install_pkg $KDE_APPS

@@ -6,13 +6,13 @@ source /root/ConfigAL_functions.sh
 
 echo_subsection "Checking for Virtual Machine"
 # See http://unix.stackexchange.com/questions/89714/easy-way-to-determine-virtualization-technology
-pacman -S --noconfirm dmidecode
+install_pkg dmidecode
 # VM_HOST=$(dmidecode -s system-manufacturer)
 VM_HOST=$(dmidecode -s system-product-name)
 if [[ "$VM_HOST" == "VirtualBox" ]]; then
   echo_info "VirtualBox found... installing guest additions"
-  pacman -S --noconfirm virtualbox-guest-modules-arch
-  pacman -S --noconfirm virtualbox-guest-utils
+  install_pkg virtualbox-guest-modules-arch
+  install_pkg virtualbox-guest-utils
   systemctl enable vboxservice
 fi
 
@@ -48,10 +48,10 @@ export LANG=$OS_LOCALE
 echo_subsection "Installing packages"
 pacman -Syy
 echo_info "Installing bash-completion"
-pacman -S --noconfirm bash-completion
+install_pkg bash-completion
 
 echo_info "Installing sudo"
-pacman -S --noconfirm sudo
+install_pkg sudo
 groupadd sudo
 replace_conf "# %sudo\tALL=(ALL) ALL" "%sudo\tALL=(ALL) ALL" /etc/sudoers
 
@@ -106,7 +106,7 @@ if [[ "$EFI_BOOT" == "true" ]]; then
 else
   echo_info "Installing GRUB boot loader"
 
-  pacman -S --noconfirm grub
+  install_pkg grub
   grub-install --target=i386-pc --recheck $OS_DISK
   grub-mkconfig -o /boot/grub/grub.cfg
 fi
