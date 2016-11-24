@@ -91,24 +91,59 @@ echo_info () {
   echo -e "${color_cyan}$1${font_default}"
 }
 
+# read_sh () {
+#   # Requires
+#   # $1: system name
+#   # $2: user name
+#
+#   if [ -n "$ZSH_VERSION" ]; then
+#      # assume Zsh
+#
+#   elif [ -n "$BASH_VERSION" ]; then
+#      # assume Bash
+#   else
+#      # asume something else
+#   fi
+# }
+
 prompt_passwd () {
   # Requires
   # $1: system name
   # $2: user name
 
-  read -s "PROMPT_PASSWD?Enter $1 password for user $2:"
-  echo
-  read -s "PROMPT_PASSWD2?Please enter again:"
-  echo
-
-  while [ "$PROMPT_PASSWD" != "$PROMPT_PASSWD2" ]; do
-    echo "Passwords don't match!"
-    echo ""
+  if [[ -n "$ZSH_VERSION" ]]; then
+    # assume Zsh
     read -s "PROMPT_PASSWD?Enter $1 password for user $2:"
     echo
     read -s "PROMPT_PASSWD2?Please enter again:"
     echo
-  done
+
+    while [[ "$PROMPT_PASSWD" != "$PROMPT_PASSWD2" ]]; do
+      echo_warn "Passwords don't match!"
+      echo ""
+      read -s "PROMPT_PASSWD?Enter $1 password for user $2:"
+      echo
+      read -s "PROMPT_PASSWD2?Please enter again:"
+      echo
+    done
+  # elif [[ -n "$BASH_VERSION" ]]; then
+  #    # assume Bash
+  else
+    # assume something else
+    read -s -p "Enter $1 password for user $2:" PROMPT_PASSWD
+    echo
+    read -s -p "Please enter again:" PROMPT_PASSWD2
+    echo
+
+    while [[ "$PROMPT_PASSWD" != "$PROMPT_PASSWD2" ]]; do
+      echo_warn "Passwords don't match!"
+      echo ""
+      read -s -p "Enter $1 password for user $2:" PROMPT_PASSWD
+      echo
+      read -s -p "Please enter again:" PROMPT_PASSWD2
+      echo
+    done
+  fi
 
   PROMPT_PASSWD2=
 }
@@ -240,11 +275,30 @@ replace_conf () {
   fi
 }
 
+prompt_sudopw () {
+  prompt_passwd sudo $USER
+  SUDO_PASSWORD=$PROMPT_PASSWD
+  PROMPT_PASSWD=
+}
+forget_sudopw () {
+  SUDO_PASSWORD=
+}
+sudopw () {
+  # Requires
+  # $@: command to execute
+
+  while [[ "x$SUDO_PASSWORD" == "x" ]]; do
+    prompt_sudopw
+  done
+
+  echo "$SUDO_PASSWORD" | sudo -S $@
+}
+
 install_pkg () {
   # Requires
   # $@: packages to install
 
-  sudo pacman -S --noconfirm --color auto $@
+  sudopw pacman -S --noconfirm --color auto $@
 }
 
 ensure_pkg () {

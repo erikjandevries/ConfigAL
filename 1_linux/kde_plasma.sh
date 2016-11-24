@@ -1,3 +1,3 @@
 echo_section "Installing KDE Plasma desktop environment"
 
-install_pkg plasma
+ensure_pkg plasma

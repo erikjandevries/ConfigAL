@@ -164,5 +164,4 @@ KDE_APPS="$KDE_APPS konsole"                            # Terminal
 # KDE_APPS="$KDE_APPS umbrello"                           # UML modeller
 
 echo_section "Installing KDE applications"
-echo_info "$KDE_APPS"
-install_pkg $KDE_APPS
+ensure_pkg $KDE_APPS

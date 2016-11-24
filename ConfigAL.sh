@@ -1,6 +1,8 @@
 source ConfigAL_functions.sh
 source ConfigAL_settings.sh
 
+prompt_sudopw
+
 source 1_linux/xorg.sh
 source 1_linux/video_drivers.sh
 
@@ -17,3 +19,5 @@ source 2_www/firefox.sh
 source 2_www/openssh.sh
 
 source 6_machine_learning/atom.sh
+
+forget_sudopw=
