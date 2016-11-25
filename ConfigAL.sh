@@ -6,7 +6,9 @@ prompt_sudopw
 source 1_linux/xorg.sh
 source 1_linux/video_drivers.sh
 
-# source 1_linux/cinnamon.sh
+source 1_linux/cinnamon.sh
+source 1_linux/gnome.sh
+source 1_linux/gnome_applications.sh
 source 1_linux/kde_plasma.sh
 source 1_linux/kde_applications.sh
 
