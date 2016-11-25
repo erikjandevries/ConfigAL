@@ -302,32 +302,18 @@ install_pkg () {
 }
 
 ensure_pkg () {
-  # Requires
-  # $@: packages to install
-
-  pkgmissing=
-
-  for i in "$@"
-  do
-    if [[ "x$(pacman -Qq $i)" != "x$i" ]]; then
-      if [[ "x$pkgmissing" != "x" ]]; then
-        pkgmissing="$pkgmissing $i"
-      else
-        pkgmissing="$i"
-      fi
-    else
-      echo_info "$i is already installed"
-    fi
-  done
-
-  if [[ "x$pkgmissing" != "x" ]]; then
-    echo_info "Installing $pkgmissing"
-    install_pkg $pkgmissing
-  fi
+  sudopw pacman -S --needed --noconfirm --color auto $@
 }
 
-ensure_pkg () {
-  sudopw pacman -S --needed --noconfirm --color auto $@
+apm_ensure_pkg () {
+  # Requires
+  # $1: package to install
+
+  if [[ -d "$HOME/.atom/packages/$1" ]]; then
+    echo_info "Atom package $1 has already been installed."
+  else
+    apm install $1
+  fi
 }
 
 git_pull () {

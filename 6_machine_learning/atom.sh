@@ -1,17 +1,13 @@
 echo_section "Installing Atom"
 
-if [[ "x$(pacman -Qs atom)" == "x" ]]; then
-  install_pkg atom
+ensure_pkg atom
 
-  apm install atom-alignment
-  apm install atomatigit
-  apm install language-lua
-  apm install language-matlab
-  apm install language-r
-  apm install merge-conflicts
-  apm install split-diff
+apm_ensure_pkg atom-alignment
+apm_ensure_pkg atomatigit
+apm_ensure_pkg language-lua
+apm_ensure_pkg language-matlab
+apm_ensure_pkg language-r
+apm_ensure_pkg merge-conflicts
+apm_ensure_pkg split-diff
 
-  apm upgrade --no-confirm
-else
-  echo_info "Atom has already been installed"
-fi
+apm upgrade --no-confirm
