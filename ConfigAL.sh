@@ -73,11 +73,11 @@ ConfigAL_start 4_php php
 
 ConfigAL_start 5_vmhost qemu
 
-ConfigAL_start 6_mldev atom
-ConfigAL_start 6_mldev rstudio
-ConfigAL_start 6_mldev mxnet
-ConfigAL_start 6_mldev mxnet-r
-ConfigAL_start 6_mldev python27
+ConfigAL_start 6_machine_learning atom
+ConfigAL_start 6_machine_learning rstudio
+ConfigAL_start 6_machine_learning mxnet
+ConfigAL_start 6_machine_learning mxnet-r
+ConfigAL_start 6_machine_learning python27
 
 ConfigAL_start 9_private private
 
