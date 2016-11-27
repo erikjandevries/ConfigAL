@@ -1,6 +1,7 @@
 9_private/*
 !9_private/*template*.*
 
+!9_private/1_linux/
 9_private/1_linux/*
 !9_private/1_linux/*template*.*
 9_private/2_www/*
