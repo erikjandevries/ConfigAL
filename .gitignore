@@ -14,5 +14,6 @@
 !9_private/5_virtual_machine_host/*template*.*
 9_private/6_machine_learning/*
 !9_private/6_machine_learning/*template*.*
+!9_private/9_private/
 9_private/9_private/*
 !9_private/9_private/*template*.*
