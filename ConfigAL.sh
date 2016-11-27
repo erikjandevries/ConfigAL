@@ -58,7 +58,7 @@ ConfigAL_start 1_linux kde_plasma
 ConfigAL_start 1_linux kde_applications
 
 ConfigAL_start 1_linux git
-ConfigAL start 1_linux rsync
+ConfigAL_start 1_linux rsync
 
 ConfigAL_start 2_www firefox
 ConfigAL_start 2_www open
