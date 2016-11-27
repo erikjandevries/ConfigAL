@@ -10,18 +10,18 @@ fi
 
 prompt_sudopw
 
-ensure_dir 9_private_config
+ensure_dir 9_private
 ConfigAL_start() {
   # Requires
   # $1: subfolder
   # $2: script file name
 
   # Run the initialisation script
-  if [[ -e $CONFIGAL_CURRENT/9_private_config/$1/$2_init.sh ]]; then
-    source $CONFIGAL_CURRENT/9_private_config/$1/$2_init.sh
+  if [[ -e $CONFIGAL_CURRENT/9_private/$1/$2_init.sh ]]; then
+    source $CONFIGAL_CURRENT/9_private/$1/$2_init.sh
   else
-    if [[ -e $CONFIGAL_CURRENT/9_private_config/$1/$2_init_template.sh ]]; then
-      source $CONFIGAL_CURRENT/9_private_config/$1/$2_init_template.sh
+    if [[ -e $CONFIGAL_CURRENT/9_private/$1/$2_init_template.sh ]]; then
+      source $CONFIGAL_CURRENT/9_private/$1/$2_init_template.sh
     fi
   fi
 
@@ -31,11 +31,11 @@ ConfigAL_start() {
   fi
 
   # Run the finalisation script
-  if [[ -e $CONFIGAL_CURRENT/9_private_config/$1/$2_finalise.sh ]]; then
-    source $CONFIGAL_CURRENT/9_private_config/$1/$2_finalise.sh
+  if [[ -e $CONFIGAL_CURRENT/9_private/$1/$2_finalise.sh ]]; then
+    source $CONFIGAL_CURRENT/9_private/$1/$2_finalise.sh
   else
-    if [[ -e $CONFIGAL_CURRENT/9_private_config/$1/$2_finalise_template.sh ]]; then
-      source $CONFIGAL_CURRENT/9_private_config/$1/$2_finalise_template.sh
+    if [[ -e $CONFIGAL_CURRENT/9_private/$1/$2_finalise_template.sh ]]; then
+      source $CONFIGAL_CURRENT/9_private/$1/$2_finalise_template.sh
     fi
   fi
 }
