@@ -7,7 +7,7 @@ mount $BOOT_PARTITION /mnt/boot
 
 
 echo_info "Using mirrorlist for: $MIRRORLIST_COUNTRY"
-cp $CONFIGAL_REPO/1_linux/install_os/config_files/mirrorlist_$MIRRORLIST_COUNTRY /etc/pacman.d/mirrorlist
+cp $CONFIGAL_CURRENT/1_linux/install_os/config_files/mirrorlist_$MIRRORLIST_COUNTRY /etc/pacman.d/mirrorlist
 
 
 
@@ -28,8 +28,8 @@ ensure_conf "$DATA_PARTITION $DATA_PARTITION_MOUNT_FOLDER ext4 errors=remount-ro
 
 
 
-cp $CONFIGAL_REPO/1_linux/install_os/install_os_part_2.sh /mnt/root/
-cp $CONFIGAL_REPO/ConfigAL_functions.sh /mnt/root/
+cp $CONFIGAL_CURRENT/1_linux/install_os/install_os_part_2.sh /mnt/root/
+cp $CONFIGAL_CURRENT/ConfigAL_functions.sh /mnt/root/
 tee /mnt/root/install_os_part_2_settings.sh << EOF > /dev/null
 OS_TIME_ZONE=$OS_TIME_ZONE
 OS_LOCALE=$OS_LOCALE

@@ -1,7 +1,3 @@
-CONFIGAL_REPO=$(pwd)
-
-#### 1 Linux ####
-
 # Prepare Data disk
 PREPARE_DATA_DISK=false
 DATA_DISK=/dev/sdb
@@ -21,18 +17,11 @@ OS_PARTITION_FS=btrfs  # ext4, btrfs
 MIRRORLIST_COUNTRY=NL
 DEVEL_PACKAGES=true
 
+OS_HOSTNAME=archlinux.local
+OS_NEW_USERNAME=johndoe
+OS_NEW_USERNAME_SUDO=true
+DATA_PARTITION_MOUNT_FOLDER=/mnt/datadisk
+
 # Install OS - part 2
 OS_TIME_ZONE=Europe/Amsterdam
 OS_LOCALE=en_GB.UTF-8
-
-# Private settings
-source $CONFIGAL_REPO/9_private_config/InstallAL_private_settings.sh
-
-
-# Passwords
-prompt_passwd "Arch Linux" "root"
-OS_ROOT_PASSWD=$PROMPT_PASSWD
-prompt_passwd "Arch Linux" $OS_NEW_USERNAME
-OS_NEW_USERNAME_PASSWD=$PROMPT_PASSWD
-
-PROMPT_PASSWD=
