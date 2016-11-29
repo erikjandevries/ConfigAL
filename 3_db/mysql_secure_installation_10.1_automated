@@ -18,11 +18,12 @@
 # Adapted from an originally installed version of the script.
 
 # Requires variables to have been set:
-# MARIADB_ROOT_PASSWORD
-# MARIADB_REMOVE_ANONYMOUS_USERS
-# MARIADB_DISALLOW_REMOTE_ROOT_LOGIN
-# MARIADB_REMOVE_TEST_DB
-# MARIADB_RELOAD_PRIVILEGE_TABLES
+# echo $MARIADB_ROOT_PASSWORD
+# echo $MARIADB_REMOVE_ANONYMOUS_USERS
+# echo $MARIADB_DISALLOW_REMOTE_ROOT_LOGIN
+# echo $MARIADB_REMOVE_TEST_DB
+# echo $MARIADB_RELOAD_PRIVILEGE_TABLES
+# read -s -p "Press enter to continue..." myvar
 
 config=".my.cnf.$$"
 command=".mysql.$$"
@@ -260,7 +261,11 @@ get_root_password() {
 	stty -echo
 	echo $echo_n "Enter current password for root (enter for none): $echo_c"
 	# read password
-  password=$MARIADB_ROOT_PASSWORD
+	if [[ "x$MARIADB_ROOT_PASSWORD" != "x" ]]; then
+	  password=$MARIADB_ROOT_PASSWORD
+	else
+	  read password
+	fi
 	echo
 	stty echo
 	if [ "x$password" = "x" ]; then
@@ -281,12 +286,19 @@ set_root_password() {
     stty -echo
     echo $echo_n "New password: $echo_c"
     # read password1
-    password1=$MARIADB_ROOT_PASSWORD
+    if [[ "x$MARIADB_ROOT_PASSWORD" != "x" ]]; then
+      password1=$MARIADB_ROOT_PASSWORD
+    else
+      read password1
+    fi
     echo
     echo $echo_n "Re-enter new password: $echo_c"
     # read password2
-    password2=$MARIADB_ROOT_PASSWORD
-
+    if [[ "x$MARIADB_ROOT_PASSWORD" != "x" ]]; then
+      password2=$MARIADB_ROOT_PASSWORD
+    else
+      read password2
+    fi
     echo
     stty echo
 
