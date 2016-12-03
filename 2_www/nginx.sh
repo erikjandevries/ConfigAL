@@ -1,4 +1,4 @@
-echo_section "Installing nginx"
+echo_section "Installing nginx www-server"
 
 ensure_pkg nginx-mainline
 
