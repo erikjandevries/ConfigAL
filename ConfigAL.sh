@@ -84,7 +84,7 @@ ConfigAL_start 1_linux rsync
 ConfigAL_start 2_www firefox
 ConfigAL_start 2_www openssh
 ConfigAL_start 2_www nginx
-# ConfigAL_start 2_www apache
+ConfigAL_start 2_www apache
 
 ConfigAL_start 3_db mariadb
 # ConfigAL_start 3_db postgresql

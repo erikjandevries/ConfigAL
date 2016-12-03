@@ -20,6 +20,6 @@ echo_subsection "Configuring sites"
 sudopw cp $CONFIGAL_CURRENT/2_www/config_files/nginx.conf /etc/nginx/nginx.conf
 replace_conf "      server_name your_domain.com;" "      server_name $NGINX_DOMAIN_NAME;" /etc/nginx/nginx.conf -sudo
 
-echo_subsection "Starting nginx Server"
+echo_subsection "Starting nginx www-server"
 sudopw systemctl enable nginx.service
 sudopw systemctl restart nginx.service
