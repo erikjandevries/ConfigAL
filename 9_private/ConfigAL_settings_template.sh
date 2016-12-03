@@ -1,8 +1,8 @@
 #### 1_linux ####
 
 # Git
-GIT_USER_NAME="John Doe"
-GIT_USER_EMAIL="johndoe@email.com"
+GIT_USER_NAME="My Name"
+GIT_USER_EMAIL="myname@email.com"
 
 
 
@@ -12,6 +12,11 @@ GIT_USER_EMAIL="johndoe@email.com"
 OPENSSH_SERVER_PORT=22
 OPENSSH_SERVER_PASSWORD_AUTHENTICATION=false
 
+# nginx
+NGINX_DOMAIN_NAME="my.domain.com"
+NGINX_SSL_O="My Organisation"
+NGINX_SSL_OU="Unit"
+NGINX_SSL_CN=$NGINX_DOMAIN_NAME
 
 
 #### 3_db ####

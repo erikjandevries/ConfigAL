@@ -275,25 +275,6 @@ replace_conf () {
   fi
 }
 
-prompt_sudopw () {
-  prompt_passwd sudo $USER
-  SUDO_PASSWORD=$PROMPT_PASSWD
-  PROMPT_PASSWD=
-}
-forget_sudopw () {
-  SUDO_PASSWORD=
-}
-sudopw () {
-  # Requires
-  # $@: command to execute
-
-  while [[ "x$SUDO_PASSWORD" == "x" ]]; do
-    prompt_sudopw
-  done
-
-  echo "$SUDO_PASSWORD" | sudo -S $@
-}
-
 install_pkg () {
   # Requires
   # $@: packages to install
