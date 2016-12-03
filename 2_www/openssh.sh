@@ -9,12 +9,13 @@ else
 fi
 
 
-echo_subsection "Configuring OpenSSH Server for authentication with keys only"
 if [[ "$OPENSSH_SERVER_PASSWORD_AUTHENTICATION" == "true" ]]; then
+  echo_subsection "Configuring OpenSSH Server to allow password authentication"
   replace_conf "PasswordAuthentication no" "PasswordAuthentication yes" /etc/ssh/sshd_config -sudo
   replace_conf "#PasswordAuthentication no" "PasswordAuthentication yes" /etc/ssh/sshd_config -sudo
   replace_conf "#PasswordAuthentication yes" "PasswordAuthentication yes" /etc/ssh/sshd_config -sudo
 else
+  echo_subsection "Configuring OpenSSH Server for authentication with keys only"
   replace_conf "PasswordAuthentication yes" "PasswordAuthentication no" /etc/ssh/sshd_config -sudo
   replace_conf "#PasswordAuthentication yes" "PasswordAuthentication no" /etc/ssh/sshd_config -sudo
   replace_conf "#PasswordAuthentication no" "PasswordAuthentication no" /etc/ssh/sshd_config -sudo
