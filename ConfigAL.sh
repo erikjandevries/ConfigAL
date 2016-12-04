@@ -66,6 +66,7 @@ ConfigAL_start 9_private ConfigAL_settings
 
 # Start installation and configuration
 
+ConfigAL_start 1_linux network_manager
 ConfigAL_start 1_linux video_drivers
 ConfigAL_start 1_linux xorg
 
