@@ -95,9 +95,9 @@ ConfigAL_start 2_www apache
 ConfigAL_start 3_db mariadb
 # ConfigAL_start 3_db postgresql
 
-# ConfigAL_start 4_php php
-# # ConfigAL_start 4_php phpadmin
-#
+ConfigAL_start 4_php php
+# ConfigAL_start 4_php phpadmin
+
 # ConfigAL_start 5_vmhost qemu
 
 ConfigAL_start 6_machine_learning atom
