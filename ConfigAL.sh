@@ -66,6 +66,11 @@ ConfigAL_start 9_private ConfigAL_settings
 
 # Start installation and configuration
 
+echo_section "Adding ConfigAL common functions to .bashrc"
+ensure_dir ~/.bash_functions
+cp $CONFIGAL_CURRENT/ConfigAL_functions.sh ~/.bash_functions/
+ensure_conf 'source ~/.bash_functions/ConfigLM_functions.sh' ~/.bashrc
+
 ConfigAL_start 1_linux network_manager
 ConfigAL_start 1_linux video_drivers
 ConfigAL_start 1_linux xorg

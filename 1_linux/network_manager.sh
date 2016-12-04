@@ -2,5 +2,5 @@ echo_section "Enabling Network Manager"
 
 ensure_pkg networkmanager
 
-systemctl enable NetworkManager
-systemctl start NetworkManager
+sudopw systemctl enable NetworkManager
+sudopw systemctl start NetworkManager
