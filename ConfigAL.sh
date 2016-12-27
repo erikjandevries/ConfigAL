@@ -1,26 +1,6 @@
 source ConfigAL_functions.sh
 CONFIGAL_CURRENT=$(pwd)
 
-prompt_sudopw () {
-  prompt_passwd sudo $USER
-  SUDO_PASSWORD=$PROMPT_PASSWD
-  PROMPT_PASSWD=
-}
-forget_sudopw () {
-  SUDO_PASSWORD=
-}
-sudopw () {
-  # Requires
-  # $@: command to execute
-
-  while [[ "x$SUDO_PASSWORD" == "x" ]]; do
-    prompt_sudopw
-  done
-
-  echo "$SUDO_PASSWORD" | sudo -S $@
-}
-
-
 
 # Load installation settings
 if [[ -e 9_private/InstallAL_settings.sh ]]; then
