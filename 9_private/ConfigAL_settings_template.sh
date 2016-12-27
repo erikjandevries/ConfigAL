@@ -10,7 +10,11 @@ XORG_ADD_SCREEN_RESOLUTION_DRIVER=intel
 GIT_USER_NAME="My Name"
 GIT_USER_EMAIL="myname@email.com"
 
+# KDE
+KDE_ALL_APPLICATIONS=true
 
+# GNOME
+GNOME_ALL_APPLICATIONS=true
 
 #### 2_www ####
 

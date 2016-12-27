@@ -56,13 +56,14 @@ ConfigAL_start 1_linux video_drivers
 ConfigAL_start 1_linux xorg
 
 ConfigAL_start 1_linux sddm
-# ConfigAL_start 1_linux mdm
-
-ConfigAL_start 1_linux cinnamon
-ConfigAL_start 1_linux gnome
-ConfigAL_start 1_linux gnome_applications
 ConfigAL_start 1_linux kde_plasma
 ConfigAL_start 1_linux kde_applications
+
+# ConfigAL_start 1_linux mdm
+ConfigAL_start 1_linux cinnamon
+
+ConfigAL_start 1_linux gnome
+ConfigAL_start 1_linux gnome_applications
 
 ConfigAL_start 1_linux git
 ConfigAL_start 1_linux rsync
