@@ -307,6 +307,21 @@ ensure_pkg () {
   sudopw pacman -S --needed --noconfirm --color auto $@
 }
 
+install_pkg_aur () {
+  ensure_dir ~/.aur
+  ensure_git_clone https://aur.archlinux.org/$1.git ~/.aur/$1.git
+
+  CURRENT_DIR=$(pwd)
+  cd ~/.aur/$1.git
+
+  makepkg -sc
+  AUR_PKG_FILE=$(ls $1*.tar.xz)
+
+  sudopw pacman -U -needed --noconfirm --color auto ~/.aur/$1.git/$AUR_PKG_FILE
+
+  cd $CURRENT_DIR
+}
+
 apm_ensure_pkg () {
   # Requires
   # $1: package to install
