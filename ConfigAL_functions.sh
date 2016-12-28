@@ -313,12 +313,7 @@ install_pkg_aur () {
 
   CURRENT_DIR=$(pwd)
   cd ~/.aur/$1.git
-
-  makepkg -sc
-  AUR_PKG_FILE=$(ls $1*.tar.xz)
-
-  sudopw pacman -U -needed --noconfirm --color auto ~/.aur/$1.git/$AUR_PKG_FILE
-
+  makepkg -sCcfi --needed --noconfirm
   cd $CURRENT_DIR
 }
 
