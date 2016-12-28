@@ -1,9 +1,9 @@
 echo_section "Installing RStudio Server"
 
-ensure_pkg wget
-install_pkg_aur rstudio-server-git
+install_pkg_aur rstudio-server-bin
 
 # sudopw touch /etc/rstudio/rserver.conf
 # sudopw touch /etc/rstudio/rsession.conf
 
 sudopw systemctl enable rstudio-server
+sudopw systemctl start rstudio-server
