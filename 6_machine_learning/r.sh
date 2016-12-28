@@ -4,6 +4,11 @@ ensure_pkg r gcc-fortran
 
 echo_subsection "Installing R packages"
 sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('roxygen2', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('testthat', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('knitr', repos='http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"devtools::install_github('hadley/devtools')\""
+
 sudo su - -c "R -e \"install.packages('logging', repos='http://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('rmarkdown', repos='http://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""

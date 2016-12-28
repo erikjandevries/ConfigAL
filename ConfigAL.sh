@@ -83,8 +83,8 @@ ConfigAL_start 4_php php
 
 ConfigAL_start 6_machine_learning atom
 
-ConfigAL_start 6_machine_learning openblas
-ConfigAL_start 6_machine_learning mkl
+# ConfigAL_start 6_machine_learning openblas
+# ConfigAL_start 6_machine_learning mkl
 
 ConfigAL_start 6_machine_learning r
 ConfigAL_start 6_machine_learning rstudio
