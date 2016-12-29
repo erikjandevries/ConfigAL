@@ -53,22 +53,10 @@ ensure_conf 'source ~/.bash_functions/ConfigAL_functions.sh' ~/.bashrc
 
 ConfigAL_start 1_linux network_manager
 ConfigAL_start 1_linux video_drivers
-ConfigAL_start 1_linux xorg
-
-ConfigAL_start 1_linux sddm
-ConfigAL_start 1_linux kde_plasma
-ConfigAL_start 1_linux kde_applications
-
-# ConfigAL_start 1_linux mdm
-ConfigAL_start 1_linux cinnamon
-
-ConfigAL_start 1_linux gnome
-ConfigAL_start 1_linux gnome_applications
 
 ConfigAL_start 1_linux git
 ConfigAL_start 1_linux rsync
 
-ConfigAL_start 2_www firefox
 ConfigAL_start 2_www openssh
 ConfigAL_start 2_www nginx
 ConfigAL_start 2_www apache
@@ -79,19 +67,31 @@ ConfigAL_start 3_db mariadb
 ConfigAL_start 4_php php
 # ConfigAL_start 4_php phpadmin
 
-# ConfigAL_start 5_vmhost qemu
+# ConfigAL_start 5_server qemu
+ConfigAL_start 5_server/owncloud owncloud
 
-ConfigAL_start 6_machine_learning atom
+ConfigAL_start 6_workstation xorg
+ConfigAL_start 6_workstation sddm
+ConfigAL_start 6_workstation kde_plasma
+ConfigAL_start 6_workstation kde_applications
+# # ConfigAL_start 6_workstation mdm
+# ConfigAL_start 6_workstation cinnamon
+# ConfigAL_start 6_workstation gnome
+# ConfigAL_start 6_workstation gnome_applications
 
-# ConfigAL_start 6_machine_learning openblas
-# ConfigAL_start 6_machine_learning mkl
+ConfigAL_start 6_workstation firefox
 
-ConfigAL_start 6_machine_learning r
-ConfigAL_start 6_machine_learning rstudio
+ConfigAL_start 7_machine_learning atom
 
-# ConfigAL_start 6_machine_learning mxnet
-# ConfigAL_start 6_machine_learning mxnet-r
-# ConfigAL_start 6_machine_learning python27
+# ConfigAL_start 7_machine_learning openblas
+# ConfigAL_start 7_machine_learning mkl
+
+ConfigAL_start 7_machine_learning r
+ConfigAL_start 7_machine_learning rstudio
+
+# ConfigAL_start 7_machine_learning mxnet
+# ConfigAL_start 7_machine_learning mxnet-r
+# ConfigAL_start 7_machine_learning python27
 
 ConfigAL_start 9_private private
 
