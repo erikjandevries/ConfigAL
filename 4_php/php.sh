@@ -1,6 +1,6 @@
 echo_section "Installing PHP"
 
-ensure_pkg php php-apache php-intl php-mcrypt
+ensure_pkg php php-apache
 
 echo_subsection "Configuring Apache for PHP"
 sudopw cp $CONFIGAL_CURRENT/4_php/config_files/info.php /srv/http/info.php
