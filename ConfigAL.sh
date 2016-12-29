@@ -86,8 +86,8 @@ ConfigAL_start 7_machine_learning atom
 # ConfigAL_start 7_machine_learning openblas
 # ConfigAL_start 7_machine_learning mkl
 
-ConfigAL_start 7_machine_learning r
-ConfigAL_start 7_machine_learning rstudio
+# ConfigAL_start 7_machine_learning r
+# ConfigAL_start 7_machine_learning rstudio
 
 # ConfigAL_start 7_machine_learning mxnet
 # ConfigAL_start 7_machine_learning mxnet-r

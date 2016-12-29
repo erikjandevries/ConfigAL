@@ -46,3 +46,18 @@ MARIADB_REMOVE_ANONYMOUS_USERS="y"
 MARIADB_DISALLOW_REMOTE_ROOT_LOGIN="y"
 MARIADB_REMOVE_TEST_DB="n"
 MARIADB_RELOAD_PRIVILEGE_TABLES="y"
+
+
+
+#### 5_server ####
+
+# OwnCloud
+OWNCLOUD_ocpath='/usr/share/webapps/owncloud'
+OWNCLOUD_ocpath_DATA="data"
+OWNCLOUD_ocpath_ASSETS="assets"
+OWNCLOUD_htuser='http'
+OWNCLOUD_htgroup='http'
+OWNCLOUD_rootuser='root'
+OWNCLOUD_oc_admin_user='admin'
+prompt_passwd "ownCloud" "$OWNCLOUD_oc_admin_user"
+OWNCLOUD_oc_admin_pass=$PROMPT_PASSWD
