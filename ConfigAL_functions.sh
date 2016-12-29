@@ -165,9 +165,9 @@ ensure_dir () {
   if [[ ! -e $1 ]]; then
     echo -e "Creating directory $1"
     if [ $USE_SUDO = true ] ; then
-      sudo mkdir $1
+      sudo mkdir -p $1
     else
-      mkdir $1
+      mkdir -p $1
     fi
   elif [[ ! -d $1 ]]; then
     echo_warning "$1 already exists, but is not a directory"
