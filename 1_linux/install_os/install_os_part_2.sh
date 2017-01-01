@@ -88,24 +88,23 @@ fi
 
 echo_subsection "Installing boot loader"
 if [[ "$EFI_BOOT" == "true" ]]; then
-  echo_warn "EFI boot is currently not supported!"
+  echo_info "Installing EFI boot loader"
 
-# bootctl --path=/boot install
-#
-# BOOTLOADER_CONF=/boot/loader/loader.conf
-# rm $BOOTLOADER_CONF
-# echo "default  arch" >> $BOOTLOADER_CONF
-# echo "timeout  3" >> $BOOTLOADER_CONF
-# echo "editor   0" >> $BOOTLOADER_CONF
-#
-# BOOTLOADER_ARCH_CONF=/boot/loader/entries/arch.conf
-# echo "title    Arch Linux" >> $BOOTLOADER_ARCH_CONF
-# echo "linux    /vmlinuz-linux" >> $BOOTLOADER_ARCH_CONF
-# # echo "initrd   /intel-ucode.img # only if you have an Intel processor" >> $BOOTLOADER_ARCH_CONF
-# echo "initrd   /initramfs-linux.img" >> $BOOTLOADER_ARCH_CONF
-# PARTUUID=$(blkid -o export /dev/sda2 | grep PARTUUID | awk -F'[=&]' '{print $2}')
-# echo "options  root=PARTUUID=$PARTUUID rw" >> $BOOTLOADER_ARCH_CONF
+  bootctl --path=/boot install
 
+  BOOTLOADER_CONF=/boot/loader/loader.conf
+  rm $BOOTLOADER_CONF
+  echo "default  arch" >> $BOOTLOADER_CONF
+  echo "timeout  3" >> $BOOTLOADER_CONF
+  echo "editor   0" >> $BOOTLOADER_CONF
+
+  BOOTLOADER_ARCH_CONF=/boot/loader/entries/arch.conf
+  echo "title    Arch Linux" >> $BOOTLOADER_ARCH_CONF
+  echo "linux    /vmlinuz-linux" >> $BOOTLOADER_ARCH_CONF
+  # echo "initrd   /intel-ucode.img # only if you have an Intel processor" >> $BOOTLOADER_ARCH_CONF
+  echo "initrd   /initramfs-linux.img" >> $BOOTLOADER_ARCH_CONF
+  PARTUUID=$(blkid -o export /dev/sda2 | grep PARTUUID | awk -F'[=&]' '{print $2}')
+  echo "options  root=PARTUUID=$PARTUUID rw" >> $BOOTLOADER_ARCH_CONF
 else
   echo_info "Installing GRUB boot loader"
 
