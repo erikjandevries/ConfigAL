@@ -6,13 +6,15 @@ ensure_dir "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}" -sudo
 ensure_dir "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_DATA" -sudo
 ensure_dir "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_ASSETS" -sudo
 
-echo_warn "Creating symlinks - code to be checked/fixed"
-sudopw ln -s "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_DATA" "${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_DATA"
-sudopw ln -s "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_ASSETS" "${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_ASSETS"
-
 echo_subsection "Installing Nextcloud"
 gpg --recv-key D75899B9A724937A
 install_pkg_aur nextcloud
+
+echo_warn "Creating symlinks"
+sudopw rmdir "${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_DATA"
+sudopw rmdir "${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_ASSETS"
+ensure_sl "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_DATA" "${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_DATA" -sudo
+ensure_sl "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_ASSETS" "${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_ASSETS" -sudo
 
 ensure_pkg php php-apache php-gd php-intl php-mcrypt
 
@@ -81,14 +83,11 @@ sudopw systemctl restart httpd.service
 
 
 echo_subsection "Creating database"
-mysql -u root -p${MARIADB_ROOT_PASSWORD} < nextcloud_create_db.sql
+mysql -u root -p${MARIADB_ROOT_PASSWORD} < $CONFIGAL_CURRENT/5_server/nextcloud/nextcloud_create_db.sql
 
 
 echo_subsection "Configuring Nextcloud"
-CURRENT_FOLDER=$(pwd)
-cd /srv/http/nextcloud/
-
-sudo -u http php occ maintenance:install \
+sudo -u http php /srv/http/nextcloud/occ maintenance:install \
   --database "mysql" \
   --database-name "nextcloud" \
   --database-user "root" \
@@ -96,5 +95,3 @@ sudo -u http php occ maintenance:install \
   --admin-user "$NEXTCLOUD_nc_admin_user" \
   --admin-pass "$NEXTCLOUD_nc_admin_pass" \
   --data-dir "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_DATA"
-
-cd $CURRENT_FOLDER
