@@ -6,7 +6,11 @@ DATA_PARTITION_FS=ext4  # ext4
 
 # Prepare OS disk
 PREPARE_OS_DISK=true
-EFI_BOOT=false
+if [[ -d /sys/firmware/efi ]]; then
+  EFI_BOOT=true
+else
+  EFI_BOOT=false
+fi
 OS_DISK=/dev/sda
 BOOT_PARTITION=${OS_DISK}1
 BOOT_PARTITION_FS=fat32  # fat32
