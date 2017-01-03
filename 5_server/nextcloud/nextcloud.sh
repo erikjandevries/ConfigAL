@@ -95,3 +95,8 @@ sudo -u http php /srv/http/nextcloud/occ maintenance:install \
   --admin-user "$NEXTCLOUD_nc_admin_user" \
   --admin-pass "$NEXTCLOUD_nc_admin_pass" \
   --data-dir "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_DATA"
+
+echo_info "Adding hostname to trusted domains"
+# replace_conf "'trusted_domains' => \n  array (\n    0 => 'localhost',\n  )," "'trusted_domains' => \n  array (\n    0 => 'localhost',\n    1 => 'localhost',\n  )," /usr/share/webapps/nextcloud/config/config.php -sudo
+replace_conf "    0 => 'localhost'," "    0 => 'localhost',\n    1 => '$NGINX_DOMAIN_NAME'," /usr/share/webapps/nextcloud/config/config.php -sudo
+sudopw chown -R ${NEXTCLOUD_htuser}:${NEXTCLOUD_htgroup} ${NEXTCLOUD_ncpath}/config/
