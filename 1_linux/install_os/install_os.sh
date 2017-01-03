@@ -45,12 +45,16 @@ chmod 700 /mnt/root/install_os_part_2.sh
 chmod 700 /mnt/root/install_os_part_2_settings.sh
 chmod 700 /mnt/root/ConfigAL_functions.sh
 
+echo_section "Change-root into new installation and finish configuration"
 arch-chroot /mnt /root/install_os_part_2.sh
 
 rm /mnt/root/install_os_part_2.sh
 rm /mnt/root/install_os_part_2_settings.sh
 rm /mnt/root/ConfigAL_functions.sh
 
+echo_section "Unmounting OS disk"
 umount -R /mnt
 
-reboot
+echo_section "Rebooting"
+echo_info "Automatic reboot disabled"
+# reboot

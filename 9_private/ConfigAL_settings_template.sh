@@ -51,13 +51,24 @@ MARIADB_RELOAD_PRIVILEGE_TABLES="y"
 
 #### 5_server ####
 
-# OwnCloud
-OWNCLOUD_ocpath='/usr/share/webapps/owncloud'
-OWNCLOUD_ocpath_DATA="data"
-OWNCLOUD_ocpath_ASSETS="assets"
-OWNCLOUD_htuser='http'
-OWNCLOUD_htgroup='http'
-OWNCLOUD_rootuser='root'
-OWNCLOUD_oc_admin_user='admin'
-prompt_passwd "ownCloud" "$OWNCLOUD_oc_admin_user"
-OWNCLOUD_oc_admin_pass=$PROMPT_PASSWD
+# # OwnCloud
+# OWNCLOUD_ocpath='/usr/share/webapps/owncloud'
+# OWNCLOUD_ocpath_DATA="data"
+# OWNCLOUD_ocpath_ASSETS="assets"
+# OWNCLOUD_htuser='http'
+# OWNCLOUD_htgroup='http'
+# OWNCLOUD_rootuser='root'
+# OWNCLOUD_oc_admin_user='admin'
+# prompt_passwd "ownCloud" "$OWNCLOUD_oc_admin_user"
+# OWNCLOUD_oc_admin_pass=$PROMPT_PASSWD
+
+# Nextcloud
+NEXTCLOUD_ncpath='/usr/share/webapps/nextcloud'
+NEXTCLOUD_ncpath_DATA="data"
+NEXTCLOUD_ncpath_ASSETS="assets"
+NEXTCLOUD_htuser='http'
+NEXTCLOUD_htgroup='http'
+NEXTCLOUD_rootuser='root'
+NEXTCLOUD_nc_admin_user='admin'
+prompt_passwd "Nextcloud" "$NEXTCLOUD_nc_admin_user"
+NEXTCLOUD_nc_admin_pass=$PROMPT_PASSWD
