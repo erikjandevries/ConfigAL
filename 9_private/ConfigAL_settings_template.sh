@@ -72,3 +72,8 @@ NEXTCLOUD_rootuser='root'
 NEXTCLOUD_nc_admin_user='admin'
 prompt_passwd "Nextcloud" "$NEXTCLOUD_nc_admin_user"
 NEXTCLOUD_nc_admin_pass=$PROMPT_PASSWD
+
+# VLC
+VLC_HTTP_PORT=8090
+prompt_passwd "VLC" "web service"
+VLC_HTTP_PASSWORD=$PROMPT_PASSWD
