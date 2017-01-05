@@ -73,6 +73,8 @@ NEXTCLOUD_nc_admin_user='admin'
 prompt_passwd "Nextcloud" "$NEXTCLOUD_nc_admin_user"
 NEXTCLOUD_nc_admin_pass=$PROMPT_PASSWD
 
+NEXTCLOUD_BACKUP_DIR=$DATA_PARTITION_MOUNT_FOLDER/.backups/nextcloud
+
 # VLC
 VLC_HTTP_PORT=8090
 prompt_passwd "VLC" "web service"

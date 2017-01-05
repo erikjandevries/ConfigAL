@@ -66,7 +66,7 @@ sudopw systemctl restart httpd.service
 
 
 echo_subsection "Configuring ownCloud"
-CURRENT_FOLDER=$(pwd)
+CURRENT_DIR=$(pwd)
 cd /srv/http/owncloud/
 
 sudo -u http php occ maintenance:install \
@@ -78,4 +78,4 @@ sudo -u http php occ maintenance:install \
   --admin-pass "$OWNCLOUD_oc_admin_pass" \
   --data-dir "${DATA_PARTITION_MOUNT_FOLDER}${OWNCLOUD_ocpath}/$OWNCLOUD_ocpath_DATA"
 
-cd $CURRENT_FOLDER
+cd $CURRENT_DIR
