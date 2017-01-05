@@ -1,9 +1,9 @@
 echo_subsection "Nextcloud security hardening"
-printf "chmod Files and Directories\n"
+echo_info "chmod Files and Directories"
 sudo find "${NEXTCLOUD_ncpath}/" -type f -print0 | sudo xargs -0 chmod 0640
 sudo find "${NEXTCLOUD_ncpath}/" -type d -print0 | sudo xargs -0 chmod 0750
 
-printf "chown Directories\n"
+echo_info "chown Directories"
 sudopw chown -R ${NEXTCLOUD_rootuser}:${NEXTCLOUD_htgroup} ${NEXTCLOUD_ncpath}/
 sudopw chown -R ${NEXTCLOUD_rootuser}:${NEXTCLOUD_htgroup} ${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/
 sudopw chown -R ${NEXTCLOUD_htuser}:${NEXTCLOUD_htgroup} ${NEXTCLOUD_ncpath}/apps/
@@ -15,7 +15,7 @@ sudopw chown -h ${NEXTCLOUD_htuser}:${NEXTCLOUD_htgroup} ${NEXTCLOUD_ncpath}/$NE
 sudopw chown -R ${NEXTCLOUD_htuser}:${NEXTCLOUD_htgroup} ${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/$NEXTCLOUD_ncpath_ASSETS/
 sudopw chmod +x ${NEXTCLOUD_ncpath}/occ
 
-printf "chmod/chown .htaccess\n"
+echo_info "chmod/chown .htaccess"
 if [ -f ${NEXTCLOUD_ncpath}/.htaccess ]
  then
   chmod 0644 ${NEXTCLOUD_ncpath}/.htaccess
