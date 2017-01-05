@@ -1,5 +1,5 @@
-CONFIGAL_CURRENT=$( cd $(dirname ${BASH_SOURCE[0]}) ; pwd -P )
-
+# CONFIGAL_CURRENT=$( cd $(dirname ${BASH_SOURCE[0]}) ; pwd -P )
+CONFIGAL_CURRENT=$(pwd)
 source $CONFIGAL_CURRENT/ConfigAL_functions.sh
 
 # Load installation settings

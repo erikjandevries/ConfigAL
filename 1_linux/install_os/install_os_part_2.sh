@@ -119,6 +119,3 @@ echo_subsection "Enabling network connection"
 NIC_NAME=$(ip link | grep -m 1 "BROADCAST" | awk -F': ' '{print $2}')
 systemctl enable dhcpcd@${NIC_NAME}.service
 # systemctl enable NetworkManager
-
-#### Exit ####
-exit
