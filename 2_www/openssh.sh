@@ -28,6 +28,7 @@ echo_subsection "Setting default port for OpenSSH Server"
 # https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/
 sudo grep -q -F "Port ${OPENSSH_SERVER_PORT}" /etc/ssh/sshd_config || sudo sed -i "s/#Port 22/Port ${OPENSSH_SERVER_PORT}/" /etc/ssh/sshd_config
 
+ensure_dir /etc/systemd/system/sshd.socket.d -sudo
 sudo tee /etc/systemd/system/sshd.socket.d/override.conf << EOF > /dev/null
 [Socket]
 ListenStream=
