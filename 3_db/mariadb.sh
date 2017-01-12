@@ -18,7 +18,7 @@ else
 
   echo_subsection "Setting root password"
   /usr/bin/mysqladmin -u root password "${MARIADB_ROOT_PASSWORD}"
-  /usr/bin/mysqladmin -u root -h ${HOSTNAME} password "${MARIADB_ROOT_PASSWORD}"
+  /usr/bin/mysqladmin -u root -h ${OS_HOSTNAME} password "${MARIADB_ROOT_PASSWORD}"
 
   echo_subsection "Securing installation"
   export MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
