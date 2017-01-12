@@ -16,7 +16,7 @@ After=network.target
 [Service]
 Type=forking
 User=vlcd
-ExecStart=/usr/bin/vlc --daemon --syslog -I http --http-port $VLC_HTTP_PORT --http-password $VLC_HTTP_PASSWORD
+ExecStart=/usr/bin/vlc --daemon --syslog -I http --http-port ${VLC_HTTP_PORT} --http-password ${VLC_HTTP_PASSWORD}
 Restart=on-abort
 
 [Install]

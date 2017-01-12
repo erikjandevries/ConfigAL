@@ -9,7 +9,7 @@ else
 fi
 
 
-if [[ "$OPENSSH_SERVER_PASSWORD_AUTHENTICATION" == "true" ]]; then
+if [[ "${OPENSSH_SERVER_PASSWORD_AUTHENTICATION}" == "true" ]]; then
   echo_subsection "Configuring OpenSSH Server to allow password authentication"
   replace_conf "PasswordAuthentication no" "PasswordAuthentication yes" /etc/ssh/sshd_config -sudo
   replace_conf "#PasswordAuthentication no" "PasswordAuthentication yes" /etc/ssh/sshd_config -sudo
@@ -26,8 +26,14 @@ echo_subsection "Setting default port for OpenSSH Server"
 # Changing the default port: Good or bad?
 # https://danielmiessler.com/blog/putting-ssh-another-port-good-idea/
 # https://major.io/2013/05/14/changing-your-ssh-servers-port-from-the-default-is-it-worth-it/
-sudo grep -q -F "Port $OPENSSH_SERVER_PORT" /etc/ssh/sshd_config || sudo sed -i "s/#Port 22/Port $OPENSSH_SERVER_PORT/" /etc/ssh/sshd_config
+sudo grep -q -F "Port ${OPENSSH_SERVER_PORT}" /etc/ssh/sshd_config || sudo sed -i "s/#Port 22/Port ${OPENSSH_SERVER_PORT}/" /etc/ssh/sshd_config
 
+sudo tee /etc/systemd/system/sshd.socket.d/override.conf << EOF > /dev/null
+[Socket]
+ListenStream=
+ListenStream=${OPENSSH_SERVER_PORT}
+EOF
+sudopw systemctl daemon-reload
 
 echo_subsection "Starting OpenSSH Server"
 sudopw systemctl enable sshd.socket

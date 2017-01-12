@@ -21,8 +21,8 @@ OS_PARTITION_FS=btrfs  # ext4, btrfs
 MIRRORLIST_COUNTRY=NL
 DEVEL_PACKAGES=true
 
-OS_HOSTNAME=archlinux.local
-OS_NEW_USERNAME=myname
+OS_HOSTNAME="archlinux.local"
+OS_NEW_USERNAME="myname"
 OS_NEW_USERNAME_SUDO=true
 DATA_PARTITION_MOUNT_FOLDER=/mnt/datadisk
 

@@ -24,13 +24,16 @@ fi
 echo_info "Generating /etc/fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
 mkdir /mnt$DATA_PARTITION_MOUNT_FOLDER
-ensure_conf "$DATA_PARTITION $DATA_PARTITION_MOUNT_FOLDER ext4 errors=remount-ro 0 0" /mnt/etc/fstab -sudo
+
+DATA_PARTITION_UUID=$(blkid -o export $DATA_PARTITION | grep ^UUID= | awk -F'[=&]' '{print $2}')
+ensure_conf "$DATA_PARTITION_UUID $DATA_PARTITION_MOUNT_FOLDER ext4 errors=remount-ro 0 0" /mnt/etc/fstab -sudo
 
 
 
 cp $CONFIGAL_CURRENT/1_linux/install_os/install_os_part_2.sh /mnt/root/
 cp $CONFIGAL_CURRENT/ConfigAL_functions.sh /mnt/root/
 tee /mnt/root/install_os_part_2_settings.sh << EOF > /dev/null
+OS_PARTITION=$OS_PARTITION
 OS_TIME_ZONE=$OS_TIME_ZONE
 OS_LOCALE=$OS_LOCALE
 OS_HOSTNAME=$OS_HOSTNAME
