@@ -26,7 +26,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 mkdir /mnt$DATA_PARTITION_MOUNT_FOLDER
 
 DATA_PARTITION_UUID=$(blkid -o export $DATA_PARTITION | grep ^UUID= | awk -F'[=&]' '{print $2}')
-ensure_conf "$DATA_PARTITION_UUID $DATA_PARTITION_MOUNT_FOLDER ext4 errors=remount-ro 0 0" /mnt/etc/fstab -sudo
+ensure_conf "UUID=$DATA_PARTITION_UUID $DATA_PARTITION_MOUNT_FOLDER ext4 errors=remount-ro 0 0" /mnt/etc/fstab -sudo
 
 
 
@@ -55,9 +55,9 @@ rm /mnt/root/install_os_part_2.sh
 rm /mnt/root/install_os_part_2_settings.sh
 rm /mnt/root/ConfigAL_functions.sh
 
-echo_section "Unmounting OS disk"
-umount -R /mnt
-
-echo_section "Rebooting"
-echo_info "Automatic reboot disabled"
-# reboot
+# echo_section "Unmounting OS disk"
+# umount -R /mnt
+#
+# echo_section "Rebooting"
+# echo_info "Automatic reboot disabled"
+# # reboot

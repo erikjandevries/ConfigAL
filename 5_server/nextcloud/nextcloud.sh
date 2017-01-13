@@ -92,4 +92,8 @@ if [[ "${NEXTCLOUD_BACKUP_RESTORED}" == "false" ]]; then
   # replace_conf "'trusted_domains' => \n  array (\n    0 => 'localhost',\n  )," "'trusted_domains' => \n  array (\n    0 => 'localhost',\n    1 => 'localhost',\n  )," /usr/share/webapps/nextcloud/config/config.php -sudo
   replace_conf "    0 => 'localhost'," "    0 => 'localhost',\n    1 => '${NGINX_DOMAIN_NAME}'," /usr/share/webapps/nextcloud/config/config.php -sudo
   sudopw chown -R ${NEXTCLOUD_htuser}:${NEXTCLOUD_htgroup} ${NEXTCLOUD_ncpath}/config/
+
+  if [[ "$NEXTCLOUD_CREATE_BACKUP_IF_MISSING" == "true" ]]; then
+    source ${SCRIPTPATH}/nextcloud_backup.sh
+  fi
 fi

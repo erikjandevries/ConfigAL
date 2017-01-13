@@ -1,5 +1,3 @@
-SCRIPTPATH=$( cd $(dirname ${BASH_SOURCE[0]}) ; pwd -P )
-
 echo_section "Removing Nextcloud"
 
 echo_subsection "Uninstalling package"

@@ -31,6 +31,7 @@ fi
 
 echo_subsection "Time Zone"
 echo_info "$OS_TIME_ZONE"
+rm /etc/localtime
 ln -s /usr/share/zoneinfo/$OS_TIME_ZONE /etc/localtime
 hwclock --systohc
 
