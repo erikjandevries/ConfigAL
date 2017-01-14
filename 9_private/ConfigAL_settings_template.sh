@@ -29,6 +29,10 @@ NETWORK_WIRELESS_passphrase=${PROMPT_PASSWD}
 # Video drivers
 INSTALL_NVIDIA_CUDA=true
 
+# Audio
+AUDIO_DEVICE=
+# AUDIO_DEVICE="hw:1,7"
+
 # Git
 GIT_USER_NAME="My Name"
 GIT_USER_EMAIL="myname@email.com"

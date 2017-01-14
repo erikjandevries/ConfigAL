@@ -54,6 +54,7 @@ ensure_conf 'source ~/.bash_functions/ConfigAL_functions.sh' ~/.bashrc
 
 ConfigAL_start 1_linux network
 ConfigAL_start 1_linux video_drivers
+ConfigAL_start 1_linux audio
 ConfigAL_start 1_linux fonts
 
 ConfigAL_start 1_linux git
