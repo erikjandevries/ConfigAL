@@ -88,16 +88,18 @@ ConfigAL_start 6_workstation vlc
 
 ConfigAL_start 7_machine_learning atom
 
-# ConfigAL_start 7_machine_learning openblas
+ConfigAL_start 7_machine_learning openblas
 # ConfigAL_start 7_machine_learning mkl
 
-# ConfigAL_start 7_machine_learning r
-# ConfigAL_start 7_machine_learning rstudio
-# ConfigAL_start 7_machine_learning rshiny
+ConfigAL_start 7_machine_learning r
+ConfigAL_start 7_machine_learning rstudio
+ConfigAL_start 7_machine_learning rshiny
 
 # ConfigAL_start 7_machine_learning mxnet
 # ConfigAL_start 7_machine_learning mxnet-r
 # ConfigAL_start 7_machine_learning python27
+
+ConfigAL_start 7_machine_learning python
 
 ConfigAL_start 9_private private
 
