@@ -84,6 +84,7 @@ ConfigAL_start 6_workstation kde_applications
 # ConfigAL_start 6_workstation gnome_applications
 
 ConfigAL_start 6_workstation firefox
+ConfigAL_start 6_workstation vlc
 
 ConfigAL_start 7_machine_learning atom
 
