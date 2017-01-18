@@ -59,6 +59,7 @@ ConfigAL_start 1_linux fonts
 
 ConfigAL_start 1_linux git
 ConfigAL_start 1_linux rsync
+ConfigAL_start 1_linux screen
 
 ConfigAL_start 2_www openssh
 ConfigAL_start 2_www nginx
