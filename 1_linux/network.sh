@@ -27,17 +27,11 @@ EOF
     echo "#Address=${NETWORK_WIRED_FIXED_ADDRESS}" | sudo tee --append /etc/systemd/network/wired.network
     echo "#DNS=${NETWORK_WIRED_FIXED_DNS}" | sudo tee --append /etc/systemd/network/wired.network
     echo "#Gateway=${NETWORK_WIRED_FIXED_GATEWAY}" | sudo tee --append /etc/systemd/network/wired.network
-    echo "" | sudo tee --append /etc/systemd/network/wired.network
-    echo "[DHCP]" | sudo tee --append /etc/systemd/network/wired.network
-    echo "RouteMetric=10" | sudo tee --append /etc/systemd/network/wired.network
   else
     echo "#DHCP=yes" | sudo tee --append /etc/systemd/network/wired.network
     echo "Address=${NETWORK_WIRED_FIXED_ADDRESS}" | sudo tee --append /etc/systemd/network/wired.network
     echo "DNS=${NETWORK_WIRED_FIXED_DNS}" | sudo tee --append /etc/systemd/network/wired.network
     echo "Gateway=${NETWORK_WIRED_FIXED_GATEWAY}" | sudo tee --append /etc/systemd/network/wired.network
-    echo "" | sudo tee --append /etc/systemd/network/wired.network
-    echo "[Route]" | sudo tee --append /etc/systemd/network/wired.network
-    echo "Metric=10" | sudo tee --append /etc/systemd/network/wired.network
   fi
 
 
@@ -66,17 +60,11 @@ EOF
     echo "#Address=${NETWORK_WIRELESS_FIXED_ADDRESS}" | sudo tee --append /etc/systemd/network/wireless.network
     echo "#DNS=${NETWORK_WIRELESS_FIXED_DNS}" | sudo tee --append /etc/systemd/network/wireless.network
     echo "#Gateway=${NETWORK_WIRELESS_FIXED_GATEWAY}" | sudo tee --append /etc/systemd/network/wireless.network
-    echo "" | sudo tee --append /etc/systemd/network/wired.network
-    echo "[DHCP]" | sudo tee --append /etc/systemd/network/wired.network
-    echo "RouteMetric=20" | sudo tee --append /etc/systemd/network/wired.network
   else
     echo "#DHCP=yes" | sudo tee --append /etc/systemd/network/wireless.network
     echo "Address=${NETWORK_WIRELESS_FIXED_ADDRESS}" | sudo tee --append /etc/systemd/network/wireless.network
     echo "DNS=${NETWORK_WIRELESS_FIXED_DNS}" | sudo tee --append /etc/systemd/network/wireless.network
     echo "Gateway=${NETWORK_WIRELESS_FIXED_GATEWAY}" | sudo tee --append /etc/systemd/network/wireless.network
-    echo "" | sudo tee --append /etc/systemd/network/wired.network
-    echo "[Route]" | sudo tee --append /etc/systemd/network/wired.network
-    echo "Metric=20" | sudo tee --append /etc/systemd/network/wired.network
   fi
 
   echo_subsection "Starting network services"
