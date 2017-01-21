@@ -89,7 +89,7 @@ ConfigAL_start 6_workstation vlc
 
 ConfigAL_start 7_machine_learning atom
 
-ConfigAL_start 7_machine_learning openblas
+ConfigAL_start 7_machine_learning openblas-lapack
 # ConfigAL_start 7_machine_learning mkl
 
 ConfigAL_start 7_machine_learning r
