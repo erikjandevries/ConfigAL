@@ -73,7 +73,10 @@ ConfigAL_start 4_php php
 
 # ConfigAL_start 5_server qemu
 ConfigAL_start 5_server/nextcloud nextcloud
+# ConfigAL_start 5_server/spreed spreed
 # ConfigAL_start 5_server/vlc vlc
+
+ConfigAL_start 5_server/qemu qemu
 
 ConfigAL_start 6_workstation xorg
 ConfigAL_start 6_workstation sddm
