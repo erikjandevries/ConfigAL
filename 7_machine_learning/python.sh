@@ -53,6 +53,11 @@ echo_subsection "Installing ${color_green}Matplotlib${color_yellow}"
 ensure_pkg python-matplotlib
 ensure_pkg python2-matplotlib
 
+echo_subsection "Installing ${color_green}scikit-learn${color_yellow}"
+ensure_pkg python-scikit-learn
+ensure_pkg python2-scikit-learn
+
+
 
 
 echo_subsection "Installing ${color_green}SymPy${color_yellow}"
