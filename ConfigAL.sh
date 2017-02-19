@@ -105,6 +105,10 @@ ConfigAL_start 7_machine_learning rshiny
 
 ConfigAL_start 7_machine_learning python
 
+ConfigAL_start 7_machine_learning opencv
+ConfigAL_start 7_machine_learning dlib
+ConfigAL_start 7_machine_learning torch
+
 ConfigAL_start 9_private private
 
 forget_sudopw
