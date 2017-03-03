@@ -57,6 +57,13 @@ font_not_blink='\033[25m'
 font_not_inverted='\033[27m'
 font_not_hidden='\033[28m'
 
+log_line() {
+  # Requires
+  # $1: log line
+  # $2: log file
+  echo "$(date -u +"%Y-%M-%d %T.%N %Z") $1" >> $2
+}
+
 echo_section () {
   # Requires
   # $1: section header
@@ -68,11 +75,33 @@ echo_section () {
   echo -e "${color_orange}${bg_black}${font_bold}  $line  ${font_default}"
 }
 
+log_section () {
+  # Requires
+  # $1: section header
+  # $2: log file
+  echo_section $1
+  tmp="##############################################################################################################"
+  length=${#1}
+  line=${tmp:1:$length}
+  log_line "" $2
+  echo "##$line##" >> $2
+  echo "# $1 #" >> $2
+  echo "##$line##" >> $2
+}
+
 echo_subsection () {
   # Requires
   # $1: subsection header
   echo -e ""
   echo -e "${color_orange}${font_bold}$1${font_default}"
+}
+
+log_subsection () {
+  # Requires
+  # $1: section header
+  # $2: log file
+  echo_subsection $1
+  log_line "######## $1 ########" $2
 }
 
 echo_warning () {
