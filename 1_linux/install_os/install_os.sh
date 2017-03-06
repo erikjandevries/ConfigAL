@@ -25,7 +25,7 @@ echo_info "Generating /etc/fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
 mkdir /mnt$DATA_PARTITION_MOUNT_FOLDER
 
-DATA_PARTITION_UUID=$(blkid -o export $DATA_PARTITION | grep ^UUID= | awk -F'[=&]' '{print $2}')
+DATA_PARTITION_UUID=$(blkid -o export $DATA_PARTITION | grep "^UUID=" | awk -F'[=&]' '{print $2}')
 ensure_conf "UUID=$DATA_PARTITION_UUID $DATA_PARTITION_MOUNT_FOLDER ext4 errors=remount-ro 0 0" /mnt/etc/fstab -sudo
 
 
