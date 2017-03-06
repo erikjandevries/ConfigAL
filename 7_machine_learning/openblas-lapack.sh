@@ -13,7 +13,7 @@ cd ~/.aur/openblas-lapack.git
 replace_conf "_config=\"FC=gfortran USE_OPENMP=0 USE_THREAD=1 \\" "_config=\"FC=gfortran USE_OPENMP=1 USE_THREAD=1 \\" ~/.aur/openblas-lapack.git/PKGBUILD
 
 makepkg -scf
-AUR_PKG_FILE=$(ls $1*.tar.xz)
+AUR_PKG_FILE=$(ls openblas-lapack*.tar.xz)
 
-sudopw pacman -U --needed --noconfirm --color auto ~/.aur/$1.git/$AUR_PKG_FILE
+sudopw pacman -U --needed --noconfirm --color auto ~/.aur/openblas-lapack.git/$AUR_PKG_FILE
 cd $CURRENT_DIR
