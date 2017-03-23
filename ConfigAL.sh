@@ -81,7 +81,8 @@ ConfigAL_start 5_server/qemu qemu
 ConfigAL_start 6_workstation xorg
 ConfigAL_start 6_workstation sddm
 ConfigAL_start 6_workstation kde_plasma
-ConfigAL_start 6_workstation kde_applications
+#ConfigAL_start 6_workstation kde_applications
+ConfigAL_start 6_workstation kde_applications_minimal
 # # ConfigAL_start 6_workstation mdm
 # ConfigAL_start 6_workstation cinnamon
 # ConfigAL_start 6_workstation gnome
