@@ -11,9 +11,11 @@ echo_section "Installing Torch7"
 # echo_subsection "Installing loadcaffe"
 # install_pkg_aur loadcaffe-git
 
+ensure_pkg gcc5
+
 
 git clone https://github.com/torch/distro.git ~/torch --recursive
-# cd ~/torch; bash install-deps;
+cd ~/torch; bash install-deps;
 . ~/torch/install.sh
 
 source ~/.bashrc
