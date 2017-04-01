@@ -111,6 +111,8 @@ ConfigAL_start 7_machine_learning opencv
 ConfigAL_start 7_machine_learning dlib
 ConfigAL_start 7_machine_learning torch
 
+ConfigAL_start 7_machine_learning jupyter
+
 ConfigAL_start 9_private private
 
 forget_sudopw
