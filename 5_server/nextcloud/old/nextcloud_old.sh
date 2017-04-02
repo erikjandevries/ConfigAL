@@ -1,26 +1,22 @@
 echo_section "Installing Nextcloud"
 SCRIPTPATH=$( cd $(dirname ${BASH_SOURCE[0]}) ; pwd -P )
 
-NEXTCLOUD_ncpath='/usr/share/webapps/nextcloud'
-
 echo_subsection "Creating directory structures"
-# ensure_dir "${NEXTCLOUD_ncpath}" -sudo
+ensure_dir "${NEXTCLOUD_ncpath}" -sudo
 ensure_dir "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}" -sudo
 ensure_dir "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_DATA}" -sudo
 ensure_dir "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_ASSETS}" -sudo
 
 echo_subsection "Installing Nextcloud"
-# gpg --keyserver hkp://pool.sks-keyservers.net --recv-key D75899B9A724937A
-# install_pkg_aur nextcloud
-ensure_pkg nextcloud
+gpg --keyserver hkp://pool.sks-keyservers.net --recv-key D75899B9A724937A
+install_pkg_aur nextcloud
 
 echo_warn "Creating symlinks"
-# sudopw rmdir "${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_DATA}"
-# sudopw rmdir "${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_ASSETS}"
+sudopw rmdir "${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_DATA}"
+sudopw rmdir "${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_ASSETS}"
 ensure_sl "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_DATA}" "${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_DATA}" -sudo
 ensure_sl "${DATA_PARTITION_MOUNT_FOLDER}${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_ASSETS}" "${NEXTCLOUD_ncpath}/${NEXTCLOUD_ncpath_ASSETS}" -sudo
 
-echo_subsection "Setup PHP"
 ensure_pkg php php-apache php-gd php-intl php-mcrypt
 
 # Uncomment the following required extensions in /etc/php/php.ini:
@@ -39,7 +35,6 @@ replace_conf ";extension=mcrypt.so" "extension=mcrypt.so" /etc/php/php.ini -sudo
 replace_conf ";extension=pdo_mysql.so" "extension=pdo_mysql.so" /etc/php/php.ini -sudo
 
 
-echo_subsection "Security Hardening"
 source ${SCRIPTPATH}/nextcloud_security_hardening.sh
 
 
@@ -78,12 +73,10 @@ fi
 
 if [[ "${NEXTCLOUD_BACKUP_RESTORED}" == "false" ]]; then
   echo_subsection "Creating database"
-  mysql -h localhost -u ${NEXTCLOUD_rootuser} -p${MARIADB_ROOT_PASSWORD} -e "CREATE DATABASE IF NOT EXISTS nextcloud DEFAULT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci';"
-  mysql -h localhost -u ${NEXTCLOUD_rootuser} -p${MARIADB_ROOT_PASSWORD} -e "DROP USER IF EXISTS 'nc_${NEXTCLOUD_nc_admin_user}'@'localhost';"
+  mysql -h localhost -u ${NEXTCLOUD_rootuser} -p${MARIADB_ROOT_PASSWORD} -e "CREATE DATABASE IF NOT EXISTS nextcloud;"
   mysql -h localhost -u ${NEXTCLOUD_rootuser} -p${MARIADB_ROOT_PASSWORD} -e "CREATE USER 'nc_${NEXTCLOUD_nc_admin_user}'@'localhost' IDENTIFIED BY '${NEXTCLOUD_nc_admin_pass}';"
   mysql -h localhost -u ${NEXTCLOUD_rootuser} -p${MARIADB_ROOT_PASSWORD} -e "GRANT ALL PRIVILEGES ON nextcloud.* TO 'nc_${NEXTCLOUD_nc_admin_user}'@'localhost' IDENTIFIED BY '${NEXTCLOUD_nc_admin_pass}';"
   mysql -h localhost -u ${NEXTCLOUD_rootuser} -p${MARIADB_ROOT_PASSWORD} -e "FLUSH PRIVILEGES;"
-  mysql -h localhost -u ${NEXTCLOUD_rootuser} -p${MARIADB_ROOT_PASSWORD} -e "SHOW GRANTS FOR 'nc_${NEXTCLOUD_nc_admin_user}'@'localhost';"
 
   echo_subsection "Configuring Nextcloud"
   sudo -u http php /srv/http/nextcloud/occ maintenance:install \
@@ -97,7 +90,7 @@ if [[ "${NEXTCLOUD_BACKUP_RESTORED}" == "false" ]]; then
 
   echo_info "Adding hostname to trusted domains"
   # replace_conf "'trusted_domains' => \n  array (\n    0 => 'localhost',\n  )," "'trusted_domains' => \n  array (\n    0 => 'localhost',\n    1 => 'localhost',\n  )," /usr/share/webapps/nextcloud/config/config.php -sudo
-  replace_conf "    0 => 'localhost'," "    0 => 'localhost',\n    1 => '${NGINX_DOMAIN_NAME}'," /etc/webapps/nextcloud/config/config.php -sudo
+  replace_conf "    0 => 'localhost'," "    0 => 'localhost',\n    1 => '${NGINX_DOMAIN_NAME}'," /usr/share/webapps/nextcloud/config/config.php -sudo
   sudopw chown -R ${NEXTCLOUD_htuser}:${NEXTCLOUD_htgroup} ${NEXTCLOUD_ncpath}/config/
 
   if [[ "$NEXTCLOUD_CREATE_BACKUP_IF_MISSING" == "true" ]]; then
