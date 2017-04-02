@@ -110,5 +110,5 @@ KDE_ALL_APPLICATIONS=true
 GNOME_ALL_APPLICATIONS=true
 
 
-
+#### Reset password variable ####
 PROMPT_PASSWD=
