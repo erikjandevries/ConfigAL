@@ -11,6 +11,6 @@ cd $REPOS_FOLDER/Clones/dlib
 # mkdir build; cd build; cmake .. -DUSE_AVX_INSTRUCTIONS=1; cmake --build .
 mkdir build; cd build; cmake .. -DUSE_AVX_INSTRUCTIONS=1; cmake --build . --config Release
 cd ..
-python3 setup.py install --yes USE_AVX_INSTRUCTIONS
+sudo python3 setup.py install --yes USE_AVX_INSTRUCTIONS
 
 cd $CURRENT_DIR
