@@ -23,23 +23,27 @@ EOF
 fi
 
 
-
+echo_subsection "Installing ${color_green}PyYAML${color_yellow}"
+ensure_pkg python-yaml
+ensure_pkg python2-yaml
 
 echo_subsection "Installing ${color_green}Numpy${color_yellow} (linked with OpenBLAS)"
 install_pkg_aur python-numpy-openblas
 install_pkg_aur python2-numpy-openblas
 
 echo_subsection "Installing ${color_green}SciPy${color_yellow} (linked with OpenBLAS)"
-# install_pkg_aur python-scipy-openblas
-ensure_git_clone https://aur.archlinux.org/python-scipy-openblas.git ~/.aur/python-scipy-openblas.git
-CURRENT_DIR=$(pwd)
-cd ~/.aur/python-scipy-openblas.git
-makepkg -scf
-AUR_PKG_FILE=$(ls python-scipy-openblas*.tar.xz)
+install_pkg_aur python-scipy-openblas
+AUR_PKG_FILE=$(ls ~/.aur/python-scipy-openblas.git/python2-scipy-openblas*.tar.xz)
 sudopw pacman -U --needed --noconfirm --color auto ~/.aur/python-scipy-openblas.git/$AUR_PKG_FILE
-AUR_PKG_FILE=$(ls python2-scipy-openblas*.tar.xz)
-sudopw pacman -U --needed --noconfirm --color auto ~/.aur/python-scipy-openblas.git/$AUR_PKG_FILE
-cd $CURRENT_DIR
+# ensure_git_clone https://aur.archlinux.org/python-scipy-openblas.git ~/.aur/python-scipy-openblas.git
+# CURRENT_DIR=$(pwd)
+# cd ~/.aur/python-scipy-openblas.git
+# makepkg -scf
+# AUR_PKG_FILE=$(ls python-scipy-openblas*.tar.xz)
+# sudopw pacman -U --needed --noconfirm --color auto ~/.aur/python-scipy-openblas.git/$AUR_PKG_FILE
+# AUR_PKG_FILE=$(ls python2-scipy-openblas*.tar.xz)
+# sudopw pacman -U --needed --noconfirm --color auto ~/.aur/python-scipy-openblas.git/$AUR_PKG_FILE
+# cd $CURRENT_DIR
 
 echo_subsection "Installing ${color_green}Pandas${color_yellow}"
 ensure_pkg python-pandas
@@ -57,7 +61,10 @@ echo_subsection "Installing ${color_green}scikit-learn${color_yellow}"
 ensure_pkg python-scikit-learn
 ensure_pkg python2-scikit-learn
 
-
+echo_subsection "Installing ${color_green}scikit-image${color_yellow}"
+install_pkg_aur python-scikit-image
+AUR_PKG_FILE=$(ls ~/.aur/python-scikit-image.git/python2-scikit-image*.tar.xz)
+sudopw pacman -U --needed --noconfirm --color auto ~/.aur/python-scikit-image.git/$AUR_PKG_FILE
 
 
 echo_subsection "Installing ${color_green}SymPy${color_yellow}"
