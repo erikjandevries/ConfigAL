@@ -24,3 +24,6 @@ echo_info "dplyr"
 sudo su - -c "R -e \"install.packages('dplyr', repos='https://cran.rstudio.com/')\""
 echo_info "ggplot2"
 sudo su - -c "R -e \"install.packages('ggplot2', repos='https://cran.rstudio.com/')\""
+
+echo_info "shinyAce"
+sudo su - -c "R -e \"install.packages('shinyAce', repos='https://cran.rstudio.com/')\""
