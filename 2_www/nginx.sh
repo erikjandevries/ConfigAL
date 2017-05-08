@@ -18,6 +18,9 @@ fi
 
 echo_subsection "Configuring sites"
 sudopw cp $CONFIGAL_CURRENT/2_www/config_files/nginx.conf /etc/nginx/nginx.conf
+replace_conf "      server_name rstudio.your_domain.com;" "      server_name rstudio.$NGINX_DOMAIN_NAME;" /etc/nginx/nginx.conf -sudo
+replace_conf "      server_name shiny.your_domain.com;" "      server_name shiny.$NGINX_DOMAIN_NAME;" /etc/nginx/nginx.conf -sudo
+replace_conf "      server_name tensorboard.your_domain.com;" "      server_name tensorboard.$NGINX_DOMAIN_NAME;" /etc/nginx/nginx.conf -sudo
 replace_conf "      server_name your_domain.com;" "      server_name $NGINX_DOMAIN_NAME;" /etc/nginx/nginx.conf -sudo
 
 echo_subsection "Starting nginx www-server"
