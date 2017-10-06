@@ -29,6 +29,7 @@ install_R_package knitr
 install_R_package_github hadley/devtools
 
 install_R_package logging
+install_R_package config
 install_R_package rmarkdown
 install_R_package shiny
 
