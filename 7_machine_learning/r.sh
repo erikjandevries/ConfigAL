@@ -2,28 +2,51 @@ echo_section "Installing R"
 
 ensure_pkg r gcc-fortran
 
+
+install_R_package() {
+  # Requires
+  # $1: package name
+echo_info "$1"
+sudo su - -c "R -e \"install.packages('$1', repos='http://cran.rstudio.com/')\""
+}
+
+install_R_package_github() {
+  # Requires
+  # $1: github repository
+echo_info "github: $1"
+sudo su - -c "R -e \"devtools::install_github('$1')\""
+}
+
+
 echo_subsection "Installing R packages"
-echo_info "devtools"
-sudo su - -c "R -e \"install.packages('devtools', repos='http://cran.rstudio.com/')\""
-sudo su - -c "R -e \"devtools::install_github('hadley/devtools')\""
-echo_info "roxygen2"
-sudo su - -c "R -e \"install.packages('roxygen2', repos='http://cran.rstudio.com/')\""
-echo_info "testthat"
-sudo su - -c "R -e \"install.packages('testthat', repos='http://cran.rstudio.com/')\""
-echo_info "knitr"
-sudo su - -c "R -e \"install.packages('knitr', repos='http://cran.rstudio.com/')\""
+install_R_package stringi
 
-echo_info "logging"
-sudo su - -c "R -e \"install.packages('logging', repos='http://cran.rstudio.com/')\""
-echo_info "rmarkdown"
-sudo su - -c "R -e \"install.packages('rmarkdown', repos='http://cran.rstudio.com/')\""
-echo_info "shiny"
-sudo su - -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
+install_R_package devtools
+install_R_package roxygen2
+install_R_package testthat
+install_R_package knitr
 
-echo_info "dplyr"
-sudo su - -c "R -e \"install.packages('dplyr', repos='https://cran.rstudio.com/')\""
-echo_info "ggplot2"
-sudo su - -c "R -e \"install.packages('ggplot2', repos='https://cran.rstudio.com/')\""
+install_R_package_github hadley/devtools
 
-echo_info "shinyAce"
-sudo su - -c "R -e \"install.packages('shinyAce', repos='https://cran.rstudio.com/')\""
+install_R_package logging
+install_R_package rmarkdown
+install_R_package shiny
+
+install_R_package dplyr
+install_R_package caret
+install_R_package e1071
+install_R_package scales
+install_R_package lubridate
+
+install_R_package ggplot2
+install_R_package shinyAce
+
+install_R_package rpart
+install_R_package randomForest
+install_R_package gbm
+install_R_package xgboost
+
+
+install_R_package_github erikjandevries/r.dstools.ej
+
+
